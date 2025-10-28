@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Meus Pedidos{% endblock %}
+
+{% block content %}
+    <h1>Meus Pedidos Prontos ({{ cliente.nome }})</h1>
+    
+    {% if not pedidos %}
+        <div style="text-align: center; padding: 50px 20px; border: 1px dashed #ccc; border-radius: 8px; margin-top: 30px;">
+            <h2 style="color: #6c757d;">Nenhum pedido finalizado.</h2>
+            <p>Seus pedidos confirmados aparecerão aqui.</p>
+        </div>
+    {% else %}
+        {% for pid, carrinho in pedidos %}
+            <div style="border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 8px; background-color: white;">
+                <h3 style="color: var(--primary-color);">Pedido #{{ pid }} - <span style="font-weight: normal; font-size: 0.9em;">{{ carrinho.data_criacao|default('Data Desconhecida') }}</span></h3>
+                <p>Status: <strong style="color: #28a745;">PROCESSADO</strong></p>
+                <p>Total: <strong>R$ {{ "%.2f"|format(carrinho.calcular_total()) }}</strong></p>
+                
+                <ul style="list-style: none; padding-left: 0; margin-top: 10px;">
+                    {% for item in carrinho.itens %}
+                        <li style="border-left: 3px solid #ccc; padding-left: 10px; margin-bottom: 5px;">
+                            {{ item.quantidade }}x {{ item.produto.nome }} (R$ {{ "%.2f"|format(item.calcular_subtotal()) }})
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <a href="{{ url_for('index') }}" style="display: inline-block; margin-top: 20px; color: var(--primary-color); text-decoration: none;">← Voltar ao Catálogo</a>
+{% endblock %}

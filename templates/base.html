@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TechNova Store | Loja Online OO{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Variáveis e Estilo Base */
+        :root {
+            --primary-color: #000; /* Preto total */
+            --secondary-color: #ffcc00; /* Amarelo/Dourado (Destaque TechNova) */
+            --text-color: #333;
+            --bg-light: #f4f7f6;
+            --header-bg: #212121; /* Cinza escuro */
+            --nav-link: #f0f0f0; /* Cor do link no menu de categorias */
+        }
+
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            margin: 0; 
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        /* Cabeçalho Principal */
+        .header {
+            background-color: var(--header-bg); 
+            color: white;
+            padding: 10px 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            position: sticky; /* Mantém o cabeçalho no topo */
+            top: 0; 
+            z-index: 1000;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px; 
+            margin: auto;
+        }
+        
+        /* Logo */
+        .header-content h1 a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.6em;
+            display: flex;
+            align-items: center;
+        }
+        .header-content h1 a:hover {
+            opacity: 0.9;
+        }
+        
+        /* BUSCA */
+        .search-bar-container { 
+            display: flex; align-items: center; 
+            flex-grow: 1; 
+            max-width: 400px; 
+            margin: 0 30px; 
+            background: white; 
+            border-radius: 4px; 
+            overflow: hidden; 
+        }
+        .search-bar-container input { 
+            border: none; padding: 8px 15px; 
+            flex-grow: 1; outline: none; 
+            color: var(--text-color); 
+        }
+        .search-bar-container button { 
+            background: var(--secondary-color); 
+            border: none; 
+            color: var(--primary-color); 
+            padding: 8px 12px; 
+            cursor: pointer; 
+            font-size: 1.1em; 
+            font-weight: 700; 
+        }
+        
+        /* Ícones e Navegação */
+        .nav-icons { 
+            display: flex; 
+            gap: 20px; 
+            font-size: 1.2em; 
+            align-items: center; 
+        }
+        .nav-icon { 
+            color: white; 
+            text-decoration: none; 
+            transition: color 0.3s; 
+        }
+        .nav-icon:hover { 
+            color: var(--secondary-color); 
+        }
+        .user-auth-link { 
+            color: white; 
+            text-decoration: none; 
+            font-size: 0.9em; 
+            padding: 5px 10px; 
+            border: 1px solid white; 
+            border-radius: 4px; 
+            transition: background-color 0.3s; 
+        }
+        .user-auth-link:hover { 
+            background-color: rgba(255, 255, 255, 0.2); 
+        }
+        .username { font-size: 0.9em; margin-right: 10px; }
+
+        /* Estilos do Dropdown */
+        .user-dropdown { position: relative; display: inline-block; }
+        .dropbtn { background-color: transparent; color: white; padding: 8px 12px; font-size: 1em; border: 1px solid white; border-radius: 4px; cursor: pointer; }
+        .dropdown-content { display: none; position: absolute; background-color: #f1f1f1; min-width: 200px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1; right: 0; border-radius: 4px; }
+        .dropdown-content a { color: black; padding: 12px 16px; text-decoration: none; display: block; font-size: 0.9em; }
+        .dropdown-content a:hover { background-color: #ddd; }
+        .user-dropdown:hover .dropdown-content { display: block; }
+        .dropdown-content a i { margin-right: 10px; width: 15px; }
+        
+        /* Container Geral */
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        h2 { border-bottom: 1px solid #ddd; padding-bottom: 8px; margin-bottom: 25px; font-weight: 500; color: var(--primary-color);}
+        
+        /* Menu Secundário (Categorias) */
+        .category-nav { background-color: var(--primary-color); padding: 8px 0; }
+        .category-nav .container { margin: 0 auto; display: flex; justify-content: center; } 
+        .category-nav a { color: var(--nav-link); text-decoration: none; padding: 0 15px; font-size: 0.95em; transition: color 0.3s; }
+        .category-nav a:hover { color: var(--secondary-color); }
+
+        /* Estilos de Botões */
+        .btn { display: inline-block; padding: 10px 18px; background-color: var(--secondary-color); color: var(--primary-color); border-radius: 4px; border: none; cursor: pointer; text-decoration: none; font-weight: 700; transition: opacity 0.2s; }
+        .btn:hover { opacity: 0.9; }
+        .success { background-color: #28a745; color: white; }
+        .success:hover { background-color: #1e7e34; }
+        
+        /* Grid de Produtos */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        /* Card de Produto */
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            text-decoration: none;
+            color: var(--text-color);
+            overflow: hidden;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        .product-info { padding: 15px; }
+        .category-tag {
+            display: inline-block;
+            background-color: var(--primary-color); 
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: 700;
+            margin-right: 5px;
+            text-transform: uppercase;
+        }
+        .promo-tag {
+            display: inline-block; background-color: #dc3545; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.8em; font-weight: 700; margin-bottom: 5px;
+        }
+
+        /* Tabela */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        th, td {
+            border: 1px solid #eee;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f8f8f8;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+        
+        /* Footer */
+        footer { text-align: center; padding: 20px; margin-top: 50px; background-color: var(--header-bg); color: #aaa; font-size: 0.8em; }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content container">
+            
+            <h1>
+                <a href="{{ url_for('index') }}" style="color: var(--secondary-color); text-decoration: none; font-weight: 700;">🛒 TechNova Store</a>
+            </h1>
+            
+            <form method="GET" action="{{ url_for('busca') }}" class="search-bar-container">
+                <input type="text" name="termo" placeholder="O que você está procurando?" />
+                <button type="submit">🔍</button>
+            </form>
+
+            <nav class="nav-icons">
+                <a href="{{ url_for('checkout_web') }}" class="nav-icon" title="Carrinho de Compras">🛒</a>
+                
+                {% if session.get('logged_in') %}
+                    <div class="user-dropdown">
+                        <button class="dropbtn">Olá, {{ session.get('user_name') }} <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i></button>
+                        <div class="dropdown-content">
+                            <a href="{{ url_for('perfil_usuario') }}"><i class="fas fa-user-circle"></i> Meu Perfil</a>
+                            <a href="{{ url_for('pedidos_prontos') }}"><i class="fas fa-box-open"></i> Meus Pedidos</a>
+                            <hr style="border: 0; height: 1px; background-color: #ccc; margin: 5px 0;">
+                            <a href="{{ url_for('logout') }}" style="color: #dc3545;"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="{{ url_for('login_cadastro') }}" class="user-auth-link">
+                        Entrar / Cadastrar
+                    </a>
+                {% endif %}
+            </nav>
+        </div>
+    </div>
+    
+    <div class="category-nav">
+        <div class="container" style="max-width: 1200px;">
+            <a href="{{ url_for('busca') }}">Departamentos</a>
+            <a href="{{ url_for('busca', categoria='Eletrônico') }}">Eletrônicos</a>
+            <a href="{{ url_for('busca', categoria='Vestuario') }}">Móveis</a>
+            <a href="{{ url_for('busca', categoria='Livro') }}">Informática</a>
+            {% if session.get('is_admin') %}
+                <a href="{{ url_for('admin_dashboard') }}" style="color: #dc3545; font-weight: 700;">ADMINISTRATIVO</a>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="container">
+        {% block content %}
+            {% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2025 TechNova Store - Demonstração POO/Flask.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Obtém o valor do parâmetro de erro da URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const aviso = urlParams.get('erro_carrinho');
+            
+            if (aviso) {
+                alert('Atenção: ' + aviso); // Usa o alert simples como pop-up (Modal)
+                
+                // Limpa o parâmetro da URL após exibir o pop-up
+                history.replaceState(null, '', location.pathname);
+            }
+        });
+    </script>
+</body>
+</html>

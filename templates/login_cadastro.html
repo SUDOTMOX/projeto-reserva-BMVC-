@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Login ou Cadastro{% endblock %}
+
+{% block content %}
+
+    <style>
+        /* Estilos locais para a tela de autenticação */
+        .auth-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr; 
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .auth-box {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        .auth-box h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .auth-box input[type="text"], .auth-box input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .auth-box .btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+        }
+        .error-message {
+            color: #dc3545;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+    </style>
+
+    <h2>Acesse sua conta ou cadastre-se</h2>
+    
+    {% if erro_login %}
+        <p class="error-message">⚠️ Erro ao fazer Login: {{ erro_login }}</p>
+    {% endif %}
+
+    <div class="auth-container">
+        
+        <div class="auth-box">
+            <h3>Fazer Login</h3>
+            <p>Entre com seu CPF (Login) e Senha. Use CPF **999.999.999-99** e Senha **admin** para acesso ADM.</p>
+            
+            <form method="POST" action="{{ url_for('login_cadastro') }}">
+                <input type="text" name="cpf_login" placeholder="CPF ou E-mail" required>
+                <input type="password" name="senha_login" placeholder="Senha" required>
+                
+                <button type="submit" name="acao" value="login" class="btn" style="background-color: var(--primary-color); color: white;">Entrar</button>
+            </form>
+        </div>
+
+        <div class="auth-box">
+            <h3>Primeiro Acesso?</h3>
+            <p>Crie sua conta para começar a fazer pedidos (Teste de Herança).</p>
+            
+            <form method="POST" action="{{ url_for('login_cadastro') }}">
+                <button type="submit" name="acao" value="cadastro" class="btn success">
+                    Criar Minha Conta
+                </button>
+            </form>
+        </div>
+
+    </div>
+{% endblock %}

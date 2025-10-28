@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Painel de Administração{% endblock %}
+
+{% block content %}
+    <h2 style="color: #dc3545;">Painel de Administração de Produtos</h2>
+    <p>Utilize esta seção para gerenciar e alterar o estado dos objetos de Produto (CRUD).</p>
+    
+    <div style="margin-bottom: 30px;">
+        <a href="{{ url_for('admin_editar_produto', pid='novo') }}" class="btn success" style="margin-right: 20px;">+ Adicionar Novo Produto</a>
+        <a href="{{ url_for('index') }}" class="btn" style="background-color: var(--primary-color); color: white;">← Voltar ao Catálogo</a>
+    </div>
+
+    <h3 style="font-weight: 500;">Produtos Cadastrados (Ações CRUD)</h3>
+    <table style="margin-top: 10px;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Imagem</th>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Categoria</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pid, produto in produtos %}
+            <tr>
+                <td>{{ pid }}</td>
+                <td><img src="{{ produto.imagem_url }}" alt="Produto" style="width: 50px; height: 50px; object-fit: cover;"></td>
+                <td>{{ produto.nome }}</td>
+                <td>R$ {{ "%.2f"|format(produto.preco) }}</td>
+                <td>{{ produto.categoria }}</td>
+                <td>
+                    <a href="{{ url_for('admin_editar_produto', pid=pid) }}" class="btn" style="background-color: var(--secondary-color); padding: 5px 10px; font-size: 0.9em;">Editar / Alterar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <h3 style="margin-top: 40px; font-weight: 500;">Clientes Cadastrados</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Status ADM</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cid, cliente in clientes %}
+            <tr>
+                <td>{{ cid }}</td>
+                <td>{{ cliente.nome }}</td>
+                <td>{{ cliente.cpf }}</td>
+                <td>{{ 'Sim' if cliente.is_admin else 'Não' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

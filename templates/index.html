@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Dashboard Principal | Vendas OO{% endblock %}
+
+{% block content %}
+
+    <div style="margin-bottom: 40px;">
+        <p style="color: #666; font-size: 1.1em;">Descubra nossas ofertas! Clique no produto para ver detalhes (Polimorfismo de Frete) e avaliações.</p>
+    </div>
+
+    <h2 style="color: var(--primary-color);">✨ Produtos em Destaque</h2>
+    
+    <div class="product-grid">
+        {% for pid, produto in produtos %}
+            <a href="{{ url_for('detalhe_produto', pid=pid) }}" style="text-decoration: none; color: inherit;">
+                {% include 'product_card.html' %} 
+            </a>
+        {% endfor %}
+    </div>
+
+    <hr style="margin-top: 40px;">
+
+    {% if session.get('is_admin') %} 
+    
+        <h2 style="color: #dc3545;">
+            ✅ PAINEL ADMINISTRATIVO ATIVO 
+            <a href="{{ url_for('admin_dashboard') }}" class="btn" style="background-color: #dc3545; color: white; padding: 5px 10px; font-size: 0.8em;">Gerenciar Produtos (CRUD)</a>
+        </h2>
+        <p style="font-style: italic;">Estes dados são visíveis apenas para você, Admin.</p>
+        
+        <h3 style="font-weight: 500;">Clientes Cadastrados</h3>
+        <table style="margin-bottom: 25px;">
+            <thead>
+                <tr>
+                    <th>Cliente ID</th>
+                    <th>Nome (Herança)</th>
+                    <th>CPF</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cid, cliente in clientes %}
+                <tr>
+                    <td>{{ cid }}</td>
+                    <td>{{ cliente.nome }}</td>
+                    <td>{{ cliente.cpf }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <h3 style="font-weight: 500;">Carrinhos/Pedidos em Aberto</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Carrinho ID</th>
+                    <th>Status</th>
+                    <th>Cliente Associado</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cid, carrinho in carrinhos %}
+                <tr>
+                    <td>{{ cid }}</td>
+                    <td>{{ carrinho.status }}</td>
+                    <td>{{ carrinho.cliente.nome }}</td>
+                    <td>R$ {{ "%.2f"|format(carrinho.calcular_total()) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        
+    {% else %}
+        <h2 style="color: #666;">Funcionalidades POO</h2>
+        <p>Acesse o login (👤) para iniciar sua jornada de compra ou ver o Painel Administrativo.</p>
+        
+    {% endif %}
+
+{% endblock %}  

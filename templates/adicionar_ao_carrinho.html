@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Montar Carrinho{% endblock %}
+
+{% block content %}
+    <h2 style="color: var(--secondary-color);">Montar Novo Pedido/Carrinho</h2>
+    <p>Cliente Associado (Teste): <strong>{{ cliente.nome }}</strong> (ID: 1)</p>
+    <p>Selecione a quantidade desejada. Isso criará o objeto **Carrinho** (Associação) e os objetos **ItemCarrinho** (Composição).</p>
+
+    <form method="POST" action="{{ url_for('adicionar_ao_carrinho_web') }}">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome do Produto</th>
+                    <th>Preço</th>
+                    <th>Frete (R$)</th>
+                    <th>Quantidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pid, produto in produtos %}
+                <tr>
+                    <td>{{ produto.nome }}</td>
+                    <td>R$ {{ "%.2f"|format(produto.preco) }}</td>
+                    <td>R$ {{ "%.2f"|format(produto.calcular_frete()) }}</td>
+                    <td>
+                        <input type="number" name="qtde_{{ pid }}" min="0" value="0" style="width: 60px; text-align: center;">
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <button type="submit" class="btn success" style="margin-top: 25px;">
+            Criar Carrinho e Ir para o Checkout
+        </button>
+    </form>
+    
+    <a href="{{ url_for('index') }}" style="margin-top: 15px;">← Voltar para o Dashboard</a>
+{% endblock %}
