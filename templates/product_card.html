@@ -1,5 +1,5 @@
 <div class="product-card">
-    <img src="{{ produto.imagem_url }}" alt="{{ produto.nome }}" class="product-img" style="width: 100%; height: 200px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px; background-color: #f0f0f0;">
+    <img src="{{ produto.imagem_url }}" alt="{{ produto.nome }}" class="product-img" style="width: 100%; height: 180px; object-fit: cover; background-color: #f0f0f0;">
     
     <div class="product-info">
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
@@ -14,7 +14,10 @@
             {{ produto.nome }}
         </h3>
         
-        <p class="product-rating" style="color: gold; font-size: 1em; margin: 5px 0 0 0;">★★★★☆ (4.5)</p>
+        <p class="product-rating" style="color: gold; font-size: 1em; margin: 5px 0 0 0;">
+            {{ "★" * (produto.calcular_media_avaliacoes() | round(0, 'floor') | int) }}{{ "☆" * (5 - (produto.calcular_media_avaliacoes() | round(0, 'floor') | int)) }} 
+            ({{ produto.calcular_media_avaliacoes() }})
+        </p>
         
         <!-- Este container vai ficar no final do card -->
         <div style="margin-top: auto; border-top: 1px solid #eee; padding-top: 15px;">

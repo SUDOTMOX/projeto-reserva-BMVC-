@@ -49,28 +49,43 @@
             "preco": 8500.0,
             "categoria": "Eletrônico",
             "peso": 15.0,
-            "imagem_url": "https://via.placeholder.com/600x400/007bff/FFFFFF?text=PC+Gamer"
+            "imagem_url": "https://via.placeholder.com/600x400/007bff/FFFFFF?text=PC+Gamer",
+            "avaliacoes": [
+                {
+                    "cliente_id": "101",
+                    "nota": 5,
+                    "comentario": "produto incrivel!!!."
+                },
+                {
+                    "cliente_id": "101",
+                    "nota": 5,
+                    "comentario": "incr\u00edvel de mais!!!"
+                }
+            ]
         },
         "102": {
             "nome": "Monitor Ultra",
             "preco": 1200.0,
             "categoria": "Eletrônico",
             "peso": 5.0,
-            "imagem_url": "https://via.placeholder.com/600x400/007bff/FFFFFF?text=Monitor"
+            "imagem_url": "https://via.placeholder.com/600x400/007bff/FFFFFF?text=Monitor",
+            "avaliacoes": []
         },
         "103": {
             "nome": "Teclado Mecânico",
             "preco": 550.0,
             "categoria": "Eletrônico",
             "peso": 1.5,
-            "imagem_url": "https://via.placeholder.com/600x400/007bff/FFFFFF?text=Teclado"
+            "imagem_url": "https://via.placeholder.com/600x400/007bff/FFFFFF?text=Teclado",
+            "avaliacoes": []
         },
         "104": {
             "nome": "Livro O Senhor dos Anéis",
             "preco": 85.0,
             "categoria": "Livro",
             "peso": 0.8,
-            "imagem_url": "https://via.placeholder.com/600x400/007bff/FFFFFF?text=Livro"
+            "imagem_url": "https://via.placeholder.com/600x400/007bff/FFFFFF?text=Livro",
+            "avaliacoes": []
         },
         "105": {
             "nome": "Câmera DSLR Canon",
@@ -84,7 +99,8 @@
             "preco": 79.9,
             "categoria": "Vestuário",
             "peso": 0.3,
-            "imagem_url": "https://via.placeholder.com/600x400/007bff/FFFFFF?text=Camiseta"
+            "imagem_url": "https://via.placeholder.com/600x400/007bff/FFFFFF?text=Camiseta",
+            "avaliacoes": []
         },
         "107": {
             "nome": "Fone Bluetooth Sony",
