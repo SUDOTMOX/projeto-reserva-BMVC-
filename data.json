@@ -1,7 +1,11 @@
 {
     "clientes": {
         "1": {
+<<<<<<< HEAD
             "nome": "Jo\u00e3o Silva",
+=======
+            "nome": "João Silva",
+>>>>>>> 23b8098d47510088389386ce7bf5abf320cf4207
             "cpf": "000.111.222-33",
             "endereco": "Rua Principal",
             "senha": "123",
@@ -47,13 +51,32 @@
         "101": {
             "nome": "PC Gamer RTX",
             "preco": 8500.0,
+<<<<<<< HEAD
             "categoria": "Eletr\u00f4nico",
             "peso": 15.0,
             "imagem_url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.lojanovaera.com%2Fproduto%2Fpc-gamer-t7-ryzen-9-7900x-geforce-rtx-4070-ti-ddr5-64gb-2tb-ssd-nvme-gabinete-lateral-de-vidro.html%3Fsrsltid%3DAfmBOorVHBnc6_JFKfQLuJDLHYzCUtQIhspb-RWxtX32elC1KdWo-Ndq&psig=AOvVaw0kmovlayb5Tz5RUs5d4iJS&ust=1764097495429000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCNiDnLa9i5EDFQAAAAAdAAAAABAE"
+=======
+            "categoria": "Eletrônico",
+            "peso": 15.0,
+            "imagem_url": "https://via.placeholder.com/600x400/007bff/FFFFFF?text=PC+Gamer",
+            "avaliacoes": [
+                {
+                    "cliente_id": "101",
+                    "nota": 5,
+                    "comentario": "produto incrivel!!!."
+                },
+                {
+                    "cliente_id": "101",
+                    "nota": 5,
+                    "comentario": "incr\u00edvel de mais!!!"
+                }
+            ]
+>>>>>>> 23b8098d47510088389386ce7bf5abf320cf4207
         },
         "102": {
             "nome": "Monitor Ultra",
             "preco": 1200.0,
+<<<<<<< HEAD
             "categoria": "Eletr\u00f4nico",
             "peso": 5.0,
             "imagem_url": "https://via.placeholder.com/600x400/007bff/FFFFFF?text=Monitor"
@@ -78,18 +101,58 @@
             "categoria": "Eletr\u00f4nico",
             "peso": 2.0,
             "imagem_url": "https://via.placeholder.com/600x400/007bff/FFFFFF?text=C\u00e2mera"
+=======
+            "categoria": "Eletrônico",
+            "peso": 5.0,
+            "imagem_url": "https://via.placeholder.com/600x400/007bff/FFFFFF?text=Monitor",
+            "avaliacoes": []
+        },
+        "103": {
+            "nome": "Teclado Mecânico",
+            "preco": 550.0,
+            "categoria": "Eletrônico",
+            "peso": 1.5,
+            "imagem_url": "https://via.placeholder.com/600x400/007bff/FFFFFF?text=Teclado",
+            "avaliacoes": []
+        },
+        "104": {
+            "nome": "Livro O Senhor dos Anéis",
+            "preco": 85.0,
+            "categoria": "Livro",
+            "peso": 0.8,
+            "imagem_url": "https://via.placeholder.com/600x400/007bff/FFFFFF?text=Livro",
+            "avaliacoes": []
+        },
+        "105": {
+            "nome": "Câmera DSLR Canon",
+            "preco": 3200.0,
+            "categoria": "Eletrônico",
+            "peso": 2.0,
+            "imagem_url": "https://via.placeholder.com/600x400/007bff/FFFFFF?text=Câmera"
+>>>>>>> 23b8098d47510088389386ce7bf5abf320cf4207
         },
         "106": {
             "nome": "Camiseta Esportiva",
             "preco": 79.9,
+<<<<<<< HEAD
             "categoria": "Vestu\u00e1rio",
             "peso": 0.3,
             "imagem_url": "https://via.placeholder.com/600x400/007bff/FFFFFF?text=Camiseta"
+=======
+            "categoria": "Vestuário",
+            "peso": 0.3,
+            "imagem_url": "https://via.placeholder.com/600x400/007bff/FFFFFF?text=Camiseta",
+            "avaliacoes": []
+>>>>>>> 23b8098d47510088389386ce7bf5abf320cf4207
         },
         "107": {
             "nome": "Fone Bluetooth Sony",
             "preco": 450.0,
+<<<<<<< HEAD
             "categoria": "Eletr\u00f4nico",
+=======
+            "categoria": "Eletrônico",
+>>>>>>> 23b8098d47510088389386ce7bf5abf320cf4207
             "peso": 0.2,
             "imagem_url": "https://via.placeholder.com/600x400/007bff/FFFFFF?text=Fone"
         },
@@ -164,9 +227,19 @@
             "imagem_url": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_t.png"
         }
     },
+<<<<<<< HEAD
     "carrinhos": {},
     "next_ids": {
         "cliente": 104,
         "carrinho": 2
+=======
+    "carrinhos": {
+        "1": null,
+        "2": null
+    },
+    "next_ids": {
+        "cliente": 104,
+        "carrinho": 3
+>>>>>>> 23b8098d47510088389386ce7bf5abf320cf4207
     }
 }

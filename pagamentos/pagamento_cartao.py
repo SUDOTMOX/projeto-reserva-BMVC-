@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from .pagamento import Pagamento
 
 class PagamentoCartao(Pagamento):
@@ -44,3 +45,17 @@ class PagamentoCartao(Pagamento):
         else:
             print("   SIMULAÇÃO: Cartão desconhecido... ERRO.")
             return False
+=======
+# Arquivo: pagamentos/pagamento_cartao.py
+from .pagamento import Pagamento
+
+class PagamentoCartao(Pagamento):
+    """Implementação Polimórfica 1."""
+    def __init__(self, valor=0.0, num_cartao=""):
+        super().__init__(valor)
+        self.num_cartao = num_cartao
+    
+    def processar(self):
+        """Implementação: Lógica de autorização de cartão."""
+        print(f"   Processando R$ {self.valor:.2f} via Cartão.")
+>>>>>>> 23b8098d47510088389386ce7bf5abf320cf4207
