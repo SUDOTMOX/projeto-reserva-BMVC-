@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Login ou Cadastro{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 960px;">
+    
+    <div class="text-center mb-4">
+        <h2>Acesse sua conta ou cadastre-se</h2>
+        <p class="lead text-muted">Use o CPF '999.999.999-99' e senha 'admin' para acesso ADM.</p>
+    </div>
+
+    {% if erro_login %}
+        <div class="alert alert-danger" role="alert">
+            <i class="fas fa-exclamation-triangle me-2"></i> <strong>Erro:</strong> {{ erro_login }}
+        </div>
+    {% endif %}
+
+    <div class="row">
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body p-4">
+                    <h3><i class="fas fa-sign-in-alt me-2" style="color: var(--cor-primaria);"></i> Fazer Login</h3>
+                    <hr>
+                    <form method="POST" action="{{ url_for('login_cadastro') }}">
+                        
+                        <div class="mb-3">
+                            <label for="cpf_login" class="form-label">CPF (Login)</label>
+                            <input type="text" class="form-control" id="cpf_login" name="cpf_login" placeholder="Seu CPF" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="senha_login" class="form-label">Senha</label>
+                            <input type="password" class="form-control" id="senha_login" name="senha_login" placeholder="Sua Senha" required>
+                        </div>
+                        
+                        <input type="hidden" name="acao" value="login">
+                        <button type="submit" class="btn btn-dark w-100 btn-lg mt-2 fw-bold">
+                            Entrar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body p-4 d-flex flex-column justify-content-center text-center">
+                    
+                    <h3><i class="fas fa-user-plus me-2" style="color: var(--cor-sucesso);"></i> Primeiro Acesso?</h3>
+                    <p class="lead mt-3">Crie sua conta para começar a fazer pedidos. Isso demonstra a **Herança** da classe Cliente.</p>
+                    
+                    <form method="POST" action="{{ url_for('login_cadastro') }}" class="mt-auto">
+                        <input type="hidden" name="acao" value="cadastro">
+                        <button type="submit" class="btn btn-success w-100 btn-lg fw-bold">
+                            Criar Minha Conta
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div> </div> {% endblock %}

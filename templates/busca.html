@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Busca e Filtros Avançados{% endblock %}
+
+{% block content %}
+
+    <div class="mb-4">
+        <h2><i class="fas fa-search-plus me-2"></i>Busca Avançada de Produtos</h2>
+        <p class="lead text-muted">Utilize os filtros abaixo para refinar sua pesquisa.</p>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-lg-3">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-filter me-2"></i>Filtros</h5>
+                </div>
+                <div class="card-body">
+                    <form method="GET" action="{{ url_for('busca') }}">
+                        
+                        <div class="mb-3">
+                            <label for="termo" class="form-label fw-bold">Pesquisa por Nome:</label>
+                            <input type="text" class="form-control" id="termo" name="termo" placeholder="Nome do produto..." value="{{ termo }}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="categoria" class="form-label fw-bold">Tipo de Produto:</label>
+                            <select name="categoria" id="categoria" class="form-select">
+                                <option value="">Todas as Categorias</option>
+                                {% for cat in categorias %}
+                                    <option value="{{ cat }}">{{ cat }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="preco_max" class="form-label fw-bold">Preço Máximo:</label>
+                            <input type="number" class="form-control" id="preco_max" name="preco_max" placeholder="Ex: 5000">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="avaliacao_min" class="form-label fw-bold">Avaliação Mínima:</label>
+                            <select name="avaliacao_min" id="avaliacao_min" class="form-select">
+                                <option value="1">1 estrela ou mais</option>
+                                <option value="3">3 estrelas ou mais</option>
+                                <option value="4" selected>4 estrelas ou mais</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100 fw-bold mt-2">
+                            <i class="fas fa-check me-2"></i>Aplicar Filtros
+                        </button>
+
+                    </form>
+                </div> </div> </div> <div class="col-lg-9">
+            <h3 class="mb-3">Resultados ({{ produtos | length }} encontrados)</h3>
+            <hr>
+
+            <div class="product-grid">
+                {% if not produtos %}
+                    <div class="col-12">
+                        <div class="alert alert-warning" role="alert">
+                            <i class="fas fa-exclamation-triangle me-2"></i>Nenhum produto encontrado com estes filtros.
+                        </div>
+                    </div>
+                {% else %}
+                    {% for pid, produto in produtos %}
+                        <a href="{{ url_for('detalhe_produto', pid=pid) }}" style="text-decoration: none; color: inherit;">
+                            {% include 'product_card.html' %} 
+                        </a>
+                    {% endfor %}
+                {% endif %}
+            </div> </div> </div> {% endblock %}
