@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TechNova Store{% endblock %}</title>
+    
+    <!-- BOOTSTRAP 5 (Adicionado para compatibilidade com o layout original) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- CSS Próprio (Carrega depois para permitir sobrescrita se necessário) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Cabeçalho Global -->
+    <header class="main-header mb-4">
+        <div class="container header-content d-flex align-items-center justify-content-between">
+            <a href="{{ url_for('loja.index') }}" class="logo text-decoration-none">
+                🛒 TechNova
+            </a>
+
+            <nav>
+                <a href="{{ url_for('checkout.checkout_page') }}" class="nav-link d-inline-block">
+                    <i class="fas fa-shopping-cart"></i> Carrinho
+                </a>
+
+                {% if session.get('logged_in') %}
+                    <span class="user-greeting ms-3 text-white">Olá, {{ session.get('user_name') }}</span>
+                    <a href="{{ url_for('auth.perfil') }}" class="nav-link d-inline-block">Perfil</a>
+                    
+                    {% if session.get('is_admin') %}
+                        <a href="{{ url_for('admin.dashboard') }}" class="nav-link admin-link d-inline-block">Admin</a>
+                    {% endif %}
+
+                    <a href="{{ url_for('auth.logout') }}" class="nav-link btn-logout d-inline-block">Sair</a>
+                {% else %}
+                    <a href="{{ url_for('auth.login_cadastro') }}" class="nav-link d-inline-block">Entrar / Cadastrar</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    {% if request.args.get('erro') %}
+        <div class="container alert alert-danger">{{ request.args.get('erro') }}</div>
+    {% endif %}
+    {% if request.args.get('msg') %}
+        <div class="container alert alert-success">{{ request.args.get('msg') }}</div>
+    {% endif %}
+
+    <main class="container pb-5">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="text-center py-4 mt-auto bg-light border-top">
+        <p class="m-0">&copy; 2025 TechNova Store - Projeto Final POO</p>
+    </footer>
+
+</body>
+</html>

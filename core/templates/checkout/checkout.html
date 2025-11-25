@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Pagamento{% endblock %}
+
+{% block content %}
+    <h1>Finalizar Pedido</h1>
+
+    <div class="checkout-container">
+        <div class="cart-summary">
+            <h3>Seus Itens</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Qtd</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in carrinho.itens %}
+                    <tr>
+                        <td>{{ item.produto.nome }}</td>
+                        <td>{{ item.quantidade }}</td>
+                        <td>R$ {{ "%.2f"|format(item.subtotal()) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="total-row">
+                <strong>Total: R$ {{ "%.2f"|format(carrinho.calcular_total()) }}</strong>
+            </div>
+        </div>
+
+        <div class="payment-options">
+            <h3>Forma de Pagamento</h3>
+            
+            <form action="{{ url_for('checkout.checkout_page') }}" method="POST">
+                
+                <div class="payment-method">
+                    <input type="radio" id="pix" name="pagamento" value="pix" checked>
+                    <label for="pix"><strong>PIX</strong> (Aprovação Imediata)</label>
+                </div>
+
+                <div class="payment-method">
+                    <input type="radio" id="boleto" name="pagamento" value="boleto">
+                    <label for="boleto"><strong>Boleto Bancário</strong></label>
+                </div>
+
+                <div class="payment-method">
+                    <input type="radio" id="cartao" name="pagamento" value="cartao">
+                    <label for="cartao"><strong>Cartão de Crédito</strong></label>
+                    
+                    <select name="parcelas" class="parcelas-select">
+                        <option value="1">1x à vista</option>
+                        <option value="3">3x sem juros</option>
+                        <option value="10">10x com juros</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-success btn-large">Confirmar Compra</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

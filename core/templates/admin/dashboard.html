@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Painel Administrativo{% endblock %}
+
+{% block content %}
+<div class="admin-dashboard">
+    <div class="admin-header">
+        <h1>Painel de Controle</h1>
+        <span class="badge-admin">Modo Administrador</span>
+    </div>
+
+    <section class="admin-section">
+        <div class="section-header">
+            <h2>Gerenciar Produtos</h2>
+            <a href="{{ url_for('admin.editar_produto', pid='novo') }}" class="btn btn-success btn-sm">+ Novo Produto</a>
+        </div>
+        
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Estoque/Peso</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pid, produto in produtos %}
+                <tr>
+                    <td>{{ pid }}</td>
+                    <td>{{ produto.nome }}</td>
+                    <td>R$ {{ "%.2f"|format(produto.preco) }}</td>
+                    <td>{{ produto.peso }}kg</td>
+                    <td>
+                        <a href="{{ url_for('admin.editar_produto', pid=pid) }}" class="btn btn-edit">Editar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <section class="admin-section">
+        <h2>Clientes Cadastrados</h2>
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Admin?</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cid, cliente in clientes %}
+                <tr>
+                    <td>{{ cliente.nome }}</td>
+                    <td>{{ cliente.cpf }}</td>
+                    <td>{{ 'Sim' if cliente.is_admin else 'Não' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</div>
+{% endblock %}

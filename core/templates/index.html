@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Seção de Boas-vindas (Hero) -->
+    <section class="hero" style="text-align: center; padding: 40px 20px; background-color: white; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <h1 style="color: var(--primary); margin-bottom: 10px;">Bem-vindo à TechNova</h1>
+        <p style="color: #666; font-size: 1.1rem;">Os melhores produtos de tecnologia com entrega rápida.</p>
+    </section>
+
+    <!-- Barra de Busca -->
+    <form action="{{ url_for('loja.busca') }}" method="get" class="search-bar" style="display: flex; gap: 10px; max-width: 600px; margin: 0 auto 40px auto;">
+        <input type="text" name="termo" placeholder="O que você procura?" style="flex-grow: 1; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+
+    <h2 style="border-left: 5px solid var(--secondary); padding-left: 15px; margin-bottom: 20px;">Destaques</h2>
+    
+    <!-- Grid de Produtos -->
+    <div class="product-grid">
+        {% for pid, produto in produtos %}
+            
+            <!-- AQUI ESTÁ A MUDANÇA: Usamos o componente reutilizável -->
+            {% include 'product_card.html' %}
+            
+        {% endfor %}
+    </div>
+
+{% endblock %}
