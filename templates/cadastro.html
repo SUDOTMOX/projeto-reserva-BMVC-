@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Cadastro de Cliente{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 720px;">
+    
+    <a href="{{ url_for('login_cadastro') }}" class="btn btn-outline-secondary mb-3">
+        <i class="fas fa-arrow-left me-2"></i> Voltar para o Login
+    </a>
+
+    <div class="card shadow-sm">
+        <div class="card-body p-4 p-md-5"> <h2 class="text-center mb-3">
+                <i class="fas fa-user-plus me-2" style="color: var(--cor-sucesso);"></i>
+                Cadastrar Novo Cliente
+            </h2>
+            <p class="text-center text-muted mb-4">
+                Preencha os dados. Isso cria uma nova instância da classe Cliente, demonstrando **Herança** de Pessoa.
+            </p>
+            <hr>
+
+            <form method="POST" action="{{ url_for('cadastrar_cliente_web') }}">
+                
+                <div class="mb-3">
+                    <label for="nome" class="form-label fw-bold">Nome:</label>
+                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Seu nome completo" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="cpf" class="form-label fw-bold">CPF (Usado para Login):</label>
+                    <input type="text" class="form-control" id="cpf" name="cpf" placeholder="000.000.000-00" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="senha" class="form-label fw-bold">Senha:</label>
+                    <input type="password" class="form-control" id="senha" name="senha" placeholder="Crie uma senha forte" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="endereco" class="form-label fw-bold">Endereço:</label>
+                    <input type="text" class="form-control" id="endereco" name="endereco" placeholder="Ex: Rua, Número, Bairro" required>
+                </div>
+
+                <button type="submit" class="btn btn-success btn-lg w-100 fw-bold mt-3">
+                    <i class="fas fa-check-circle me-2"></i>
+                    Salvar Cliente e Continuar
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
