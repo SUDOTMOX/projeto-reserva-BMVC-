@@ -90,7 +90,13 @@
             <div class="card shadow-sm my-4">
                 <div class="card-body">
                     <h5 class="card-title">Deixe sua avaliação (Associação)</h5>
-                    <form action="#" method="POST" class="review-form">
+                    
+                    <form method="POST" action="{{ url_for('avaliar_produto', pid=pid) }}" class="review-form">
+                        
+                        {% if erro_avaliacao %} 
+                            <div class="alert alert-danger">{{ erro_avaliacao }}</div>
+                        {% endif %}
+
                         <div class="mb-3">
                             <label for="nota" class="form-label">Nota (1 a 5):</label>
                             <input type="number" name="nota" min="1" max="5" required class="form-control" style="width: 100px;">
@@ -120,8 +126,4 @@
         </div>
     </div>
 
-<<<<<<< HEAD
-    {% endblock %}
-=======
-    {% endblock %}
->>>>>>> 23b8098d47510088389386ce7bf5abf320cf4207
+{% endblock %}

@@ -1,18 +1,19 @@
 import requests
 import json
 import random
+import os
 
-# O arquivo de banco de dados que seu app usa
 DB_FILE = 'data.json'
-# A API que vamos usar
-API_URL = 'https://fakestoreapi.com/products?limit=10' # Vamos buscar 10 produtos
+
+# MUDANÇA 1: Buscamos APENAS eletrônicos na API
+API_URL = 'https://fakestoreapi.com/products/category/electronics'
 
 def fetch_new_products():
     """Busca novos produtos da API."""
-    print("Buscando novos produtos da FakeStoreAPI...")
+    print(f"Buscando produtos TECH em: {API_URL}...")
     try:
         response = requests.get(API_URL)
-        response.raise_for_status() # Lança um erro se a requisição falhar
+        response.raise_for_status() 
         return response.json()
     except Exception as e:
         print(f"ERRO ao buscar produtos: {e}")
@@ -20,61 +21,75 @@ def fetch_new_products():
 
 def format_product(api_product, new_id):
     """Converte o formato da API para o formato do nosso DB."""
+    
+    # MUDANÇA 2: Como a API só retorna "electronics", vamos variar 
+    # as categorias manualmente para sua loja ficar bonita no filtro.
+    categorias_tech = ["Eletrônico", "Informática", "Acessório", "Gamer"]
+    categoria_escolhida = random.choice(categorias_tech)
+
+    # Truque para dar nomes mais "Tech" baseados no título original
+    nome = api_product['title']
+    if "WD" in nome or "SSD" in nome or "Drive" in nome:
+        categoria_escolhida = "Informática"
+    elif "Monitor" in nome:
+        categoria_escolhida = "Eletrônico"
+    
     return {
-        "nome": api_product['title'],
-        "preco": float(api_product['price']),
-        "categoria": api_product['category'],
-        "peso": round(random.uniform(0.2, 5.0), 1), # A API não tem peso, então vamos simular
-        "imagem_url": api_product['image'] # A API JÁ NOS DÁ A IMAGEM!
+        "nome": nome[:60], # Limita o tamanho do nome
+        "preco": float(api_product['price']) * 5.5, # Converte USD para BRL (aprox)
+        "categoria": categoria_escolhida,
+        "peso": round(random.uniform(0.2, 3.0), 1),
+        "imagem_url": api_product['image'],
+        "avaliacoes": []
     }
 
 def main():
-    """Função principal para carregar, atualizar e salvar o DB."""
-    
-    # Carrega o data.json existente
-    try:
-        with open(DB_FILE, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-    except FileNotFoundError:
-        print(f"Erro: Arquivo {DB_FILE} não encontrado.")
-        return
-    except json.JSONDecodeError:
-        print(f"Erro: Arquivo {DB_FILE} está corrompido ou vazio.")
+    # 1. Verifica se o arquivo existe
+    if not os.path.exists(DB_FILE):
+        print("Arquivo data.json não encontrado! Rode o app_web.py primeiro para criar a estrutura.")
         return
 
-    # Busca os produtos novos
+    # 2. Carrega o DB atual
+    with open(DB_FILE, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    # 3. Busca produtos TECH
     new_products_api = fetch_new_products()
     if not new_products_api:
-        print("Nenhum produto foi buscado. Saindo.")
         return
 
-    # Acha o último ID de produto para continuar a contagem
-    existing_product_keys = [int(k) for k in data['produtos'].keys()]
-    next_id = max(existing_product_keys) + 1
+    # 4. Limpa produtos antigos (OPCIONAL: Se quiser só tech, descomente a linha abaixo)
+    # data['produtos'] = {} 
+
+    # Descobre o próximo ID disponível
+    if data['produtos']:
+        ids_existentes = [int(k) for k in data['produtos'].keys()]
+        next_id = max(ids_existentes) + 1
+    else:
+        next_id = 101
     
     count = 0
-    for product in new_products_api:
-        # Formata o produto para o nosso padrão
+    # Vamos duplicar a lista da API para ter mais produtos (a API só retorna uns 6 eletrônicos)
+    # Isso fará sua loja parecer cheia com 12 produtos
+    lista_dobrada = new_products_api + new_products_api 
+
+    for product in lista_dobrada:
         formatted = format_product(product, next_id)
-        
-        # Adiciona ao dicionário de produtos
-        product_id_str = str(next_id)
-        data['produtos'][product_id_str] = formatted
-        
-        print(f"Adicionando ID {product_id_str}: {formatted['nome'][:30]}...")
-        
+        # Adiciona uma pequena variação no preço para o duplicado não ser idêntico
+        if count >= len(new_products_api): 
+            formatted['preco'] += 50.00 
+            formatted['nome'] = formatted['nome'] + " (Edição Especial)"
+
+        data['produtos'][str(next_id)] = formatted
+        print(f"Adicionado Tech: {formatted['nome']}")
         next_id += 1
         count += 1
 
-    # Salva o arquivo data.json de volta no disco
-    try:
-        with open(DB_FILE, 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=4, ensure_ascii=False)
-    except Exception as e:
-        print(f"ERRO ao salvar o arquivo: {e}")
-        return
+    # 5. Salva
+    with open(DB_FILE, 'w', encoding='utf-8') as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
 
-    print(f"\nSUCESSO! {count} novos produtos foram adicionados ao {DB_FILE}.")
+    print(f"\nSUCESSO! {count} produtos TECH adicionados ao catálogo.")
 
 if __name__ == "__main__":
     main()

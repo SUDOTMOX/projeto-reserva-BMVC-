@@ -1,28 +1,37 @@
 {% extends "base.html" %}
 
+{% block title %}Dashboard Principal | TechNova Store{% endblock %}
+
 {% block content %}
-    <!-- Seção de Boas-vindas (Hero) -->
-    <section class="hero" style="text-align: center; padding: 40px 20px; background-color: white; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-        <h1 style="color: var(--primary); margin-bottom: 10px;">Bem-vindo à TechNova</h1>
-        <p style="color: #666; font-size: 1.1rem;">Os melhores produtos de tecnologia com entrega rápida.</p>
-    </section>
 
-    <!-- Barra de Busca -->
-    <form action="{{ url_for('loja.busca') }}" method="get" class="search-bar" style="display: flex; gap: 10px; max-width: 600px; margin: 0 auto 40px auto;">
-        <input type="text" name="termo" placeholder="O que você procura?" style="flex-grow: 1; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
-        <button type="submit" class="btn btn-primary">Buscar</button>
-    </form>
+    <div class="bg-light p-5 rounded-3 mb-5 shadow-sm text-center">
+        <div class="container-fluid py-3">
+            <h1 class="display-5 fw-bold" style="color: var(--cor-primaria);">Bem-vindo à TechNova</h1>
+            <p class="col-md-8 fs-4 text-muted mx-auto">
+                Projeto BMVC completo com Flask e POO.
+            </p>
+            <a href="{{ url_for('busca') }}" class="btn btn-success btn-lg fw-bold mt-3">
+                <i class="fas fa-search me-2"></i>Ver produtos
+            </a>
+        </div>
+    </div>
 
-    <h2 style="border-left: 5px solid var(--secondary); padding-left: 15px; margin-bottom: 20px;">Destaques</h2>
+    <h2 style="color: var(--cor-primaria);">Destaques</h2>
     
-    <!-- Grid de Produtos -->
     <div class="product-grid">
         {% for pid, produto in produtos %}
-            
-            <!-- AQUI ESTÁ A MUDANÇA: Usamos o componente reutilizável -->
-            {% include 'product_card.html' %}
-            
+            <a href="{{ url_for('detalhe_produto', pid=pid) }}" style="text-decoration: none; color: inherit;">
+                {% include 'product_card.html' %} 
+            </a>
         {% endfor %}
     </div>
+
+    {% if session.get('is_admin') %} 
+        <hr class="my-5">
+        <div class="alert alert-warning">
+            <h4><i class="fas fa-user-shield"></i> Área Admin</h4>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-danger">Ir para Dashboard</a>
+        </div>
+    {% endif %}
 
 {% endblock %}

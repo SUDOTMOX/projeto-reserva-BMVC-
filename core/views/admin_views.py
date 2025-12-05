@@ -1,4 +1,3 @@
-# Arquivo: core/views/admin_views.py
 
 from flask import Blueprint, render_template, request, redirect, url_for, session
 import database
@@ -8,14 +7,12 @@ admin_bp = Blueprint('admin', __name__)
 DB = database.carregar_dados_json()
 
 def verificar_admin():
-    """Helper para proteger rotas."""
     if not session.get('logged_in') or not session.get('is_admin'):
         return False
     return True
 
 @admin_bp.route('/admin')
 def dashboard():
-    """Painel principal do Admin."""
     if not verificar_admin():
         return redirect(url_for('loja.index'))
         
@@ -27,7 +24,6 @@ def dashboard():
 
 @admin_bp.route('/admin/produto/<pid>', methods=['GET', 'POST'])
 def editar_produto(pid):
-    """Cria ou Edita um produto (CRUD)."""
     if not verificar_admin():
         return redirect(url_for('loja.index'))
 
@@ -36,7 +32,6 @@ def editar_produto(pid):
         produto = DB['produtos'].get(pid)
 
     if request.method == 'POST':
-        # Captura dados do formulário
         nome = request.form.get('nome')
         preco = float(request.form.get('preco'))
         peso = float(request.form.get('peso'))
@@ -44,9 +39,7 @@ def editar_produto(pid):
         imagem_url = request.form.get('imagem_url')
 
         if pid == 'novo':
-            # Create
-            # Gera um ID simples (ex: timestamp ou sequencial manual para o exemplo)
-            # Aqui vamos usar um ID aleatório ou manual para simplificar
+           
             import random
             novo_id = str(random.randint(200, 999))
             
@@ -56,7 +49,7 @@ def editar_produto(pid):
             
             DB['produtos'][novo_id] = novo_produto
         elif produto:
-            # Update
+            
             produto.nome = nome
             produto.preco = preco
             produto.peso = peso

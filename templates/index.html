@@ -1,9 +1,6 @@
 {% extends "base.html" %}
-<<<<<<< HEAD
+
 {% block title %}Dashboard Principal | Vendas OO{% endblock %}
-=======
-{% block title %}Dashboard Principal | TechNova Store{% endblock %}
->>>>>>> 23b8098d47510088389386ce7bf5abf320cf4207
 
 {% block content %}
 
@@ -22,11 +19,10 @@
     </div>
     <h2 style="color: var(--cor-primaria);"><i class="fas fa-star me-2"></i>Produtos em Destaque</h2>
     
-<<<<<<< HEAD
+
     <div class="product-grid">
-=======
-    <div class="product-grid-5"> 
->>>>>>> 23b8098d47510088389386ce7bf5abf320cf4207
+
+  
         {% for pid, produto in produtos %}
             <a href="{{ url_for('detalhe_produto', pid=pid) }}" style="text-decoration: none; color: inherit;">
                 {% include 'product_card.html' %} 

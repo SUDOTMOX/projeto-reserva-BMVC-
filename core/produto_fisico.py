@@ -1,88 +1,52 @@
 # Arquivo: core/produto_fisico.py
 from .produto import Produto
-<<<<<<< HEAD
+from .avaliacao import Avaliacao # Certifique-se de ter este import se usar avaliações
 
 class ProdutoFisico(Produto):
     """Demonstra HERANÇA de Produto e POLIMORFISMO (Frete)."""
     def __init__(self, nome, preco, peso, imagem_url, categoria="Físico"):
         super().__init__(nome, preco, categoria)
         self.peso = peso
-        self.imagem_url = imagem_url # NOVO ATRIBUTO
-=======
-from .avaliacao import Avaliacao # Importa a classe Avaliacao
-
-class ProdutoFisico(Produto):
-    """
-    Subclasse de Produto. Demonstra HERANÇA e POLIMORFISMO (Frete).
-    Agora também gerencia avaliações (COMPOSIÇÃO).
-    """
-    def __init__(self, nome, preco, peso, imagem_url, categoria="Físico"):
-        super().__init__(nome, preco, categoria)
-        self.peso = peso
-        self.imagem_url = imagem_url
-        self.avaliacoes = [] # Lista para COMPOSIÇÃO de Avaliacoes
->>>>>>> 23b8098d47510088389386ce7bf5abf320cf4207
+        self.imagem_url = imagem_url 
+        self.avaliacoes = [] # Lista para armazenar objetos Avaliacao (Associação)
 
     def calcular_frete(self):
-        """Implementação Polimórfica 1: Frete baseado no peso."""
+        """Implementação Polimórfica: Frete baseado no peso."""
         return 10.0 + (self.peso * 0.5) 
-<<<<<<< HEAD
-
-    def to_json(self):
-        """Serializa o Produto, incluindo a URL da imagem."""
-        data = super().to_json()
-        data['peso'] = self.peso
-        data['imagem_url'] = self.imagem_url
-=======
-        
+    
     def adicionar_avaliacao(self, avaliacao: Avaliacao):
-        """Adiciona uma nova avaliação ao produto."""
-        if isinstance(avaliacao, Avaliacao):
-            self.avaliacoes.append(avaliacao)
+        """Adiciona uma avaliação ao produto."""
+        self.avaliacoes.append(avaliacao)
 
-    def calcular_media_avaliacoes(self) -> float:
-        """Calcula a média das notas das avaliações."""
+    def calcular_media_avaliacoes(self):
         if not self.avaliacoes:
-            return 0.0 # Retorna 0 se não houver avaliações
-        
-        soma_notas = sum(avl.nota for avl in self.avaliacoes)
-        return round(soma_notas / len(self.avaliacoes), 1) # Arredonda para 1 casa decimal
+            return 0
+        total = sum(a.nota for a in self.avaliacoes)
+        return total / len(self.avaliacoes)
 
     def to_json(self):
-        """Serializa o Produto, incluindo a lista de avaliações."""
+        """Serializa o Produto, incluindo a URL da imagem e avaliações."""
         data = super().to_json()
         data['peso'] = self.peso
         data['imagem_url'] = self.imagem_url
-        # Serializa cada objeto Avaliacao na lista
-        data['avaliacoes'] = [avl.to_json() for avl in self.avaliacoes] 
->>>>>>> 23b8098d47510088389386ce7bf5abf320cf4207
+        data['avaliacoes'] = [a.to_json() for a in self.avaliacoes]
         return data
         
     @staticmethod
     def from_json(data):
-<<<<<<< HEAD
         """Reconstrói a instância do ProdutoFisico."""
-        return ProdutoFisico(
+        prod = ProdutoFisico(
             data['nome'], 
             data['preco'], 
             data['peso'], 
             data['imagem_url'], 
             data['categoria']
         )
-=======
-        """Reconstrói a instância do ProdutoFisico, incluindo avaliações."""
-        produto = ProdutoFisico(
-            data['nome'], 
-            data['preco'], 
-            data.get('peso', 0.0), # Usa get com default para segurança
-            data.get('imagem_url', ''), 
-            data['categoria']
-        )
-        # Reconstrói a lista de avaliações
-        for avl_data in data.get('avaliacoes', []):
-            avaliacao_obj = Avaliacao.from_json(avl_data)
-            if avaliacao_obj: # Adiciona apenas se a reconstrução for bem-sucedida
-                produto.adicionar_avaliacao(avaliacao_obj)
-        
-        return produto
->>>>>>> 23b8098d47510088389386ce7bf5abf320cf4207
+        # Reconstrói as avaliações se existirem
+        if 'avaliacoes' in data:
+            for av_data in data['avaliacoes']:
+                try:
+                    prod.adicionar_avaliacao(Avaliacao.from_json(av_data))
+                except:
+                    pass # Ignora avaliações malformadas
+        return prod
