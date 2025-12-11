@@ -1,0 +1,58 @@
+{# Este é o seu VIEW (V) estático de Nível 1 #}
+{% extends "base.html" %}
+
+{% block title %}
+    Sobre o Projeto
+{% endblock %}
+
+{% block content %}
+    <div class="card shadow-sm">
+        <div class="card-body p-4 p-md-5">
+            
+            <h2 class="mb-3">
+                <i class="fas fa-info-circle me-2"></i>Sobre o Projeto TechNova Store
+            </h2>
+            
+            <p class="lead">
+                Esta é uma demonstração da arquitetura <strong>BMVC Nível 1 (Página Estática)</strong>.
+            </p>
+            <hr>
+            
+            <p>
+                Esta página demonstra que o <strong>Controller (C)</strong>, o arquivo <code>app_web.py</code>,
+                consegue rotear e renderizar um <strong>View (V)</strong>, este arquivo <code>sobre.html</code>.
+            </p>
+            <p>
+                Este View não consulta nenhum <strong>Model (M)</strong> ou banco de dados para ser exibido.
+            </p>
+            <p>
+                {# ESTA É A LINHA CORRIGIDA #}
+                Ele também demonstra que os arquivos <strong>CSS e JS</strong> estão plenamente funcionais,
+                pois ele herda (<code>{{ '{%' }} extends 'base.html' {{ '%}' }}</code>) do <code>base.html</code>
+                e carrega com sucesso toda a estilização do Bootstrap e o <code>style.css</code>.
+            </p>
+
+        </div>
+    </div>
+    
+    <div class="card shadow-sm mt-4">
+        <div class="card-body">
+            <h5 class="card-title">Demonstração de JS Ativo</h5>
+            <p>Clique no botão abaixo para provar que o JavaScript está "plenamente funcional".</p>
+            
+            <button class="btn btn-warning" id="botao-teste-js">
+                <i class="fas fa-mouse-pointer"></i> Clique-me!
+            </button>
+            
+            <p id="mensagem-js" class="mt-3 text-success fw-bold"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('botao-teste-js').addEventListener('click', function() {
+            let elementoMensagem = document.getElementById('mensagem-js');
+            elementoMensagem.textContent = 'O JavaScript está 100% funcional! ';
+        });
+    </script>
+    
+{% endblock %}

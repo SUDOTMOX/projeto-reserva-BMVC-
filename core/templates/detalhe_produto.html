@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}{{ produto.nome }}{% endblock %}
+
+{% block content %}
+<div class="product-detail">
+    <div class="product-image-container">
+        <img src="{{ produto.imagem_url }}" alt="{{ produto.nome }}" class="main-image">
+    </div>
+
+    <div class="product-info-container">
+        <span class="category-tag">{{ produto.categoria }}</span>
+        <h1>{{ produto.nome }}</h1>
+        
+        <div class="price-box">
+            <span class="price-value">R$ {{ "%.2f"|format(produto.preco) }}</span>
+            <span class="installments">em até 12x no cartão</span>
+        </div>
+
+        <form action="{{ url_for('checkout.adicionar_item') }}" method="POST" class="purchase-form">
+            <input type="hidden" name="produto_id" value="{{ pid }}">
+            
+            <div class="quantity-control">
+                <label>Quantidade:</label>
+                <input type="number" name="quantidade" value="1" min="1" max="99">
+            </div>
+
+            <div class="buttons-row">
+                <button type="submit" name="acao_compra" value="compra_imediata" class="btn btn-success btn-lg">
+                    Comprar Agora
+                </button>
+                <button type="submit" name="acao_compra" value="adicionar_carrinho" class="btn btn-outline btn-lg">
+                    Adicionar ao Carrinho
+                </button>
+            </div>
+        </form>
+
+        <div class="tech-specs">
+            <h3>Detalhes</h3>
+            <ul>
+                <li><strong>Peso:</strong> {{ produto.peso }} kg</li>
+                <li><strong>Frete Estimado:</strong> R$ {{ "%.2f"|format(frete) }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

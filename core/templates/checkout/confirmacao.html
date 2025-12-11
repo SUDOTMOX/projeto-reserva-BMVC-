@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Pedido Confirmado!{% endblock %}
+
+{% block content %}
+<div class="confirmation-container">
+    <div class="success-icon">✅</div>
+    <h1>Obrigado pela sua compra!</h1>
+    <p>Seu pedido foi processado com sucesso.</p>
+
+    <div class="payment-details-box">
+        <h3>Detalhes do Pagamento</h3>
+        <p>Valor Total: <strong>R$ {{ "%.2f"|format(total) }}</strong></p>
+        <p>Método: <strong>{{ forma|upper }}</strong></p>
+
+        {% if forma == 'pix' and pix_info %}
+            <div class="pix-area">
+                <h4>Pagamento via PIX</h4>
+                <p>Escaneie o QR Code abaixo:</p>
+                <img src="{{ pix_info.qr_url }}" alt="QR Code Pix" class="qr-code">
+                
+                <div class="copy-paste">
+                    <p>Ou copie o código:</p>
+                    <code>{{ pix_info.code }}</code>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <a href="{{ url_for('loja.index') }}" class="btn btn-primary">Voltar para a Loja</a>
+</div>
+{% endblock %}
