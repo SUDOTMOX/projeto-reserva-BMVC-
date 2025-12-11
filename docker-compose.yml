@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 version: '3.8'
 
+=======
+>>>>>>> a5dc457 (docker do projeto pronto)
 services:
   loja-web:
     build: .
@@ -7,8 +10,17 @@ services:
     ports:
       - "5000:5000"
     volumes:
+<<<<<<< HEAD
  
       - ./data.json:/app/data.json
     environment:
       - FLASK_DEBUG=1
+=======
+      # Mapeia a pasta atual (.) para a pasta /app dentro do container
+      # Isso permite que alterações no código (VS Code) reflitam na hora
+      - .:/app
+    environment:
+      - FLASK_DEBUG=1
+      - FLASK_APP=main.py
+>>>>>>> a5dc457 (docker do projeto pronto)
     restart: unless-stopped

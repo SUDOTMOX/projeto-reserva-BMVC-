@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "base.html" %}
 
 {% block title %}Busca de Produtos{% endblock %}
@@ -19,11 +20,32 @@
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-white border-bottom-0 pt-4">
                     <h5 class="fw-bold mb-0"><i class="fas fa-filter me-2"></i>Filtros</h5>
+=======
+
+
+{% block title %}Busca e Filtros Avançados{% endblock %}
+
+{% block content %}
+
+    <div class="mb-4">
+        <h2><i class="fas fa-search-plus me-2"></i>Busca Avançada de Produtos</h2>
+        <p class="lead text-muted">Utilize os filtros abaixo para refinar sua pesquisa.</p>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- COLUNA DA ESQUERDA: FILTROS -->
+        <div class="col-lg-3">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0"><i class="fas fa-filter me-2"></i>Filtros</h5>
+>>>>>>> a5dc457 (docker do projeto pronto)
                 </div>
                 <div class="card-body">
                     <form method="GET" action="{{ url_for('loja.busca') }}">
                         
                         <div class="mb-3">
+<<<<<<< HEAD
                             <label for="termo" class="form-label small fw-bold text-uppercase text-muted">Nome do Produto</label>
                             <input type="text" class="form-control" id="termo" name="termo" 
                                    placeholder="Ex: Teclado..." value="{{ termo }}">
@@ -33,6 +55,16 @@
                             <label for="categoria" class="form-label small fw-bold text-uppercase text-muted">Categoria</label>
                             <select name="categoria" id="categoria" class="form-select">
                                 <option value="">Todas</option>
+=======
+                            <label for="termo" class="form-label fw-bold">Pesquisa por Nome:</label>
+                            <input type="text" class="form-control" id="termo" name="termo" placeholder="Nome do produto..." value="{{ termo }}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="categoria" class="form-label fw-bold">Tipo de Produto:</label>
+                            <select name="categoria" id="categoria" class="form-select">
+                                <option value="">Todas as Categorias</option>
+>>>>>>> a5dc457 (docker do projeto pronto)
                                 {% for cat in categorias %}
                                     <option value="{{ cat }}" {% if cat == categoria_selecionada %}selected{% endif %}>{{ cat }}</option>
                                 {% endfor %}
@@ -40,6 +72,7 @@
                         </div>
 
                         <div class="mb-3">
+<<<<<<< HEAD
                             <label for="preco_max" class="form-label small fw-bold text-uppercase text-muted">Preço Máximo (R$)</label>
                             <input type="number" class="form-control" id="preco_max" name="preco_max" 
                                    placeholder="Ex: 2000" value="{{ preco_max_selecionado }}">
@@ -54,11 +87,35 @@
                             </a>
                         </div>
 
+=======
+                            <label for="preco_max" class="form-label fw-bold">Preço Máximo:</label>
+                            <input type="number" class="form-control" id="preco_max" name="preco_max" placeholder="Ex: 5000">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="avaliacao_min" class="form-label fw-bold">Avaliação Mínima:</label>
+                            <select name="avaliacao_min" id="avaliacao_min" class="form-select">
+                                <option value="1">1 estrela ou mais</option>
+                                <option value="3">3 estrelas ou mais</option>
+                                <option value="4" selected>4 estrelas ou mais</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100 fw-bold mt-2">
+                            <i class="fas fa-check me-2"></i>Aplicar Filtros
+                        </button>
+                        
+                        <a href="{{ url_for('loja.busca') }}" class="btn btn-outline-secondary w-100 mt-2">
+                            Limpar Filtros
+                        </a>
+
+>>>>>>> a5dc457 (docker do projeto pronto)
                     </form>
                 </div>
             </div>
         </div>
 
+<<<<<<< HEAD
         <div class="col-lg-9 col-md-8">
             
             {% if not produtos %}
@@ -110,4 +167,31 @@
         </div>
     </div>
 </div>
+=======
+        <!-- COLUNA DA DIREITA: RESULTADOS -->
+        <div class="col-lg-9">
+            <h3 class="mb-3">Resultados ({{ produtos | length }} encontrados)</h3>
+            <hr>
+
+            <div class="product-grid">
+                {% if not produtos %}
+                    <div class="col-12">
+                        <div class="alert alert-warning" role="alert">
+                            <i class="fas fa-exclamation-triangle me-2"></i>Nenhum produto encontrado com estes filtros.
+                        </div>
+                    </div>
+                {% else %}
+                    {% for pid, produto in produtos %}
+                        <!-- 
+                           Atenção: O card original era envolto em um link <a>. 
+                           Se o seu 'product_card.html' tiver botões dentro, remova esse <a> externo
+                           para não quebrar o HTML. Caso contrário, pode manter.
+                        -->
+                        {% include 'product_card.html' %} 
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+>>>>>>> a5dc457 (docker do projeto pronto)
 {% endblock %}

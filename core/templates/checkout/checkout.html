@@ -21,7 +21,11 @@
                     <tr>
                         <td>{{ item.produto.nome }}</td>
                         <td>{{ item.quantidade }}</td>
+<<<<<<< HEAD
                         <td>R$ {{ "%.2f"|format(item.calcular_subtotal()) }}</td>
+=======
+                        <td>R$ {{ "%.2f"|format(item.subtotal()) }}</td>
+>>>>>>> a5dc457 (docker do projeto pronto)
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 Flask==3.0.0
 requests
 flask-socketio
 simple-websocket
+=======
+Flask==3.0.0
+>>>>>>> a5dc457 (docker do projeto pronto)

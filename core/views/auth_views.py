@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from flask import Blueprint, render_template, request, redirect, url_for, session
 import database
 from core.cliente import Cliente
@@ -8,11 +9,26 @@ auth_bp = Blueprint('auth', __name__)
 def login_cadastro():
     DB = database.carregar_dados_json()
     erro = request.args.get('erro')
+=======
+
+from flask import Blueprint, render_template, request, redirect, url_for, session
+import database
+from core.models.usuarios import Cliente
+
+auth_bp = Blueprint('auth', __name__)
+
+DB = database.carregar_dados_json()
+
+@auth_bp.route('/auth', methods=['GET', 'POST'])
+def login_cadastro():
+    erro = None
+>>>>>>> a5dc457 (docker do projeto pronto)
 
     if request.method == 'POST':
         acao = request.form.get('acao')
 
         if acao == 'cadastro':
+<<<<<<< HEAD
             nome = request.form.get('nome_cadastro') or "Cliente Novo"
             cpf = request.form.get('cpf_cadastro') or "000.000.000-00"
             email = request.form.get('email_cadastro') or "email@teste.com"
@@ -27,6 +43,13 @@ def login_cadastro():
                 cpf=cpf,
                 endereco="Atualize seu endereço",
                 senha=senha,
+=======
+            novo_cliente = Cliente(
+                nome="Novo Cliente", 
+                cpf="000.000.000-00", 
+                endereco="Endereço Padrão",
+                senha="123",
+>>>>>>> a5dc457 (docker do projeto pronto)
                 is_admin=False
             )
             
@@ -40,8 +63,13 @@ def login_cadastro():
             session['user_name'] = novo_cliente.nome
             session['is_admin'] = False
             
+<<<<<<< HEAD
             return redirect(url_for('auth.perfil'))
 
+=======
+            return redirect(url_for('auth.perfil')) 
+        
+>>>>>>> a5dc457 (docker do projeto pronto)
         elif acao == 'login':
             cpf_login = request.form.get('cpf_login')
             senha_login = request.form.get('senha_login')
@@ -73,15 +101,21 @@ def logout():
 
 @auth_bp.route('/perfil', methods=['GET', 'POST'])
 def perfil():
+<<<<<<< HEAD
     DB = database.carregar_dados_json()
+=======
+>>>>>>> a5dc457 (docker do projeto pronto)
     user_id = session.get('user_id')
     if not user_id:
         return redirect(url_for('auth.login_cadastro'))
         
     cliente = DB['clientes'].get(user_id)
+<<<<<<< HEAD
     if not cliente:
         session.clear()
         return redirect(url_for('auth.login_cadastro'))
+=======
+>>>>>>> a5dc457 (docker do projeto pronto)
     
     if request.method == 'POST':
         cliente.nome = request.form.get('nome')
@@ -91,17 +125,26 @@ def perfil():
             cliente.senha = nova_senha
             
         database.salvar_dados_json(DB)
+<<<<<<< HEAD
         session['user_name'] = cliente.nome
+=======
+        session['user_name'] = cliente.nome 
+>>>>>>> a5dc457 (docker do projeto pronto)
         
     return render_template('auth/perfil.html', cliente=cliente)
 
 @auth_bp.route('/pedidos')
 def pedidos():
+<<<<<<< HEAD
     DB = database.carregar_dados_json()
+=======
+   
+>>>>>>> a5dc457 (docker do projeto pronto)
     user_id = session.get('user_id')
     if not user_id:
         return redirect(url_for('auth.login_cadastro'))
     
+<<<<<<< HEAD
     cliente = DB['clientes'].get(user_id)
     
     meus_pedidos = [
@@ -110,3 +153,12 @@ def pedidos():
     ]
     
     return render_template('auth/pedidos.html', pedidos=meus_pedidos, cliente=cliente)
+=======
+   
+    meus_pedidos = [
+        (cid, c) for cid, c in DB['carrinhos'].items()
+        if c.cliente_id == user_id and c.status == 'PROCESSADO' 
+    ]
+     
+    return render_template('auth/pedidos.html', pedidos=meus_pedidos)
+>>>>>>> a5dc457 (docker do projeto pronto)

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from flask import Blueprint, render_template, request, redirect, url_for, session
 import database
 from core.produto_fisico import ProdutoFisico
@@ -9,12 +10,24 @@ def verificar_admin():
     Função auxiliar para proteger as rotas.
     Retorna True se for admin logado, False caso contrário.
     """
+=======
+
+from flask import Blueprint, render_template, request, redirect, url_for, session
+import database
+from core.models.produtos import ProdutoFisico
+
+admin_bp = Blueprint('admin', __name__)
+DB = database.carregar_dados_json()
+
+def verificar_admin():
+>>>>>>> a5dc457 (docker do projeto pronto)
     if not session.get('logged_in') or not session.get('is_admin'):
         return False
     return True
 
 @admin_bp.route('/admin')
 def dashboard():
+<<<<<<< HEAD
     """
     Painel Principal do Admin (READ do CRUD).
     """
@@ -22,6 +35,11 @@ def dashboard():
         return redirect(url_for('loja.index'))
         
     DB = database.carregar_dados_json()
+=======
+    if not verificar_admin():
+        return redirect(url_for('loja.index'))
+        
+>>>>>>> a5dc457 (docker do projeto pronto)
     return render_template(
         'admin/dashboard.html',
         produtos=DB['produtos'].items(),
@@ -30,6 +48,7 @@ def dashboard():
 
 @admin_bp.route('/admin/produto/<pid>', methods=['GET', 'POST'])
 def editar_produto(pid):
+<<<<<<< HEAD
     """
     Rota Híbrida: Criação (CREATE) e Edição (UPDATE).
     """
@@ -40,17 +59,27 @@ def editar_produto(pid):
     produto = None
     
     # Se não for novo, tenta buscar o produto existente
+=======
+    if not verificar_admin():
+        return redirect(url_for('loja.index'))
+
+    produto = None
+>>>>>>> a5dc457 (docker do projeto pronto)
     if pid != 'novo':
         produto = DB['produtos'].get(pid)
 
     if request.method == 'POST':
+<<<<<<< HEAD
         # Captura os dados do formulário
+=======
+>>>>>>> a5dc457 (docker do projeto pronto)
         nome = request.form.get('nome')
         preco = float(request.form.get('preco'))
         peso = float(request.form.get('peso'))
         categoria = request.form.get('categoria')
         imagem_url = request.form.get('imagem_url')
 
+<<<<<<< HEAD
         # Lógica de CRIAÇÃO (CREATE)
         if pid == 'novo':
             # Gera um ID novo baseado no maior ID existente
@@ -72,12 +101,27 @@ def editar_produto(pid):
             
         # Lógica de ATUALIZAÇÃO (UPDATE)
         elif produto:
+=======
+        if pid == 'novo':
+           
+            import random
+            novo_id = str(random.randint(200, 999))
+            
+            novo_produto = ProdutoFisico(novo_id, nome, preco, "Descricao..", peso, "10x10")
+            novo_produto.categoria = categoria
+            novo_produto.imagem_url = imagem_url
+            
+            DB['produtos'][novo_id] = novo_produto
+        elif produto:
+            
+>>>>>>> a5dc457 (docker do projeto pronto)
             produto.nome = nome
             produto.preco = preco
             produto.peso = peso
             produto.categoria = categoria
             produto.imagem_url = imagem_url
 
+<<<<<<< HEAD
         # Salva as alterações no JSON
         database.salvar_dados_json(DB)
         return redirect(url_for('admin.dashboard'))
@@ -102,3 +146,9 @@ def deletar_produto(pid):
         print(f"[ADMIN] Produto '{nome_removido}' (ID: {pid}) excluído com sucesso.")
     
     return redirect(url_for('admin.dashboard'))
+=======
+        database.salvar_dados_json(DB)
+        return redirect(url_for('admin.dashboard'))
+
+    return render_template('admin/editar_produto.html', produto=produto, pid=pid)
+>>>>>>> a5dc457 (docker do projeto pronto)

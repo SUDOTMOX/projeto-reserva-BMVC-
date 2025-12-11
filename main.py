@@ -4,8 +4,11 @@ import os
 import sys
 
 
+<<<<<<< HEAD
 from core.extensions import socketio
 
+=======
+>>>>>>> a5dc457 (docker do projeto pronto)
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 

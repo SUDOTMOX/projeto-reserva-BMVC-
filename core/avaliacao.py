@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 
 class Avaliacao:
+=======
+# Arquivo: core/avaliacao.py
+
+class Avaliacao:
+    """Classe de dados simples para ser Associada ao Produto."""
+>>>>>>> a5dc457 (docker do projeto pronto)
     def __init__(self, cliente_id, nota, comentario):
         self.cliente_id = cliente_id
         self.nota = nota

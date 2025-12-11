@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 :root {
     --primary: #2c3e50;
     --secondary: #e67e22; 
+=======
+/* --- RESET E GERAL --- */
+:root {
+    --primary: #2c3e50;
+    --secondary: #e67e22; /* Laranja TechNova */
+>>>>>>> a5dc457 (docker do projeto pronto)
     --accent: #3498db;
     --success: #27ae60;
     --danger: #c0392b;
@@ -21,6 +28,10 @@ body {
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; padding: 0; }
 
+<<<<<<< HEAD
+=======
+/* --- CABEÇALHO --- */
+>>>>>>> a5dc457 (docker do projeto pronto)
 .main-header {
     background-color: var(--primary);
     color: white;

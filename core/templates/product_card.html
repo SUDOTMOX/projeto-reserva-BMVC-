@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="card h-100 border-0 shadow-sm product-card-hover" style="transition: transform 0.2s, box-shadow 0.2s;">
     
     <a href="{{ url_for('loja.detalhe_produto', pid=pid) }}" style="text-decoration: none; color: inherit;">
@@ -43,6 +44,26 @@
                 <input type="hidden" name="quantidade" value="1">
                 <button type="submit" name="acao_compra" value="adicionar_carrinho" class="btn btn-warning btn-sm rounded-pill fw-bold">
                     Adicionar ao Carrinho
+=======
+<div class="card">
+    <img src="{{ produto.imagem_url }}" alt="{{ produto.nome }}">
+    
+    <div class="card-body">
+        <h3>{{ produto.nome }}</h3>
+        
+        <p class="price">R$ {{ "%.2f"|format(produto.preco) }}</p>
+        
+        <div class="card-actions">
+            <a href="{{ url_for('loja.detalhe_produto', pid=pid) }}" class="btn btn-outline">
+                Ver Detalhes
+            </a>
+            
+            <form action="{{ url_for('checkout.adicionar_item') }}" method="POST" style="display:inline;">
+                <input type="hidden" name="produto_id" value="{{ pid }}">
+                <input type="hidden" name="quantidade" value="1">
+                <button type="submit" name="acao_compra" value="adicionar_carrinho" class="btn btn-primary">
+                    + Carrinho
+>>>>>>> a5dc457 (docker do projeto pronto)
                 </button>
             </form>
         </div>

@@ -13,6 +13,7 @@
     <div class="auth-grid">
         <div class="auth-box login-box">
             <h3>Já sou cliente</h3>
+<<<<<<< HEAD
             <form action="{{ url_for('auth.login_cadastro') }}" method="POST">
                 <input type="hidden" name="acao" value="login">
                 <div class="form-group">
@@ -27,10 +28,33 @@
             </form>
             <div class="admin-hint">
                 <small><strong>Admin:</strong> 999.999.999-99 / admin</small>
+=======
+            <p>Entre com seu CPF e senha.</p>
+            
+            <form action="{{ url_for('auth.login_cadastro') }}" method="POST">
+                <input type="hidden" name="acao" value="login">
+                
+                <div class="form-group">
+                    <label>CPF:</label>
+                    <input type="text" name="cpf_login" placeholder="000.000.000-00" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Senha:</label>
+                    <input type="password" name="senha_login" placeholder="Sua senha" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Entrar</button>
+            </form>
+            
+            <div class="admin-hint">
+                <small><strong>Dica para Professor:</strong> Use CPF <code>999.999.999-99</code> e senha <code>admin</code> para acesso ADM.</small>
+>>>>>>> a5dc457 (docker do projeto pronto)
             </div>
         </div>
 
         <div class="auth-box register-box">
+<<<<<<< HEAD
             <h3>Criar Conta Nova</h3>
             <form action="{{ url_for('auth.login_cadastro') }}" method="POST">
                 <input type="hidden" name="acao" value="cadastro">
@@ -49,6 +73,14 @@
                 </div>
                 
                 <button type="submit" class="btn btn-outline">Cadastrar</button>
+=======
+            <h3>Primeira vez aqui?</h3>
+            <p>Crie sua conta para acompanhar pedidos e agilizar compras.</p>
+            
+            <form action="{{ url_for('auth.login_cadastro') }}" method="POST">
+                <input type="hidden" name="acao" value="cadastro">
+                <button type="submit" class="btn btn-outline">Criar Conta Nova</button>
+>>>>>>> a5dc457 (docker do projeto pronto)
             </form>
         </div>
     </div>
