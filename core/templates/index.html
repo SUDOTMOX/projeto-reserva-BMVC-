@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="hero" style="text-align: center; padding: 40px 20px; background-color: white; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <h1 style="color: var(--primary); margin-bottom: 10px;">Bem-vindo à TechNova</h1>
+        <p style="color: #666; font-size: 1.1rem;">Os melhores produtos de tecnologia com entrega rápida.</p>
+        
+        <!-- CORRIGIDO: loja.busca -->
+        <a href="{{ url_for('loja.busca') }}" class="btn btn-success btn-lg fw-bold mt-3" style="margin-top: 15px; display: inline-block;">
+            Fazer uma Busca Avançada
+        </a>
+    </section>
+
+    <!-- CORRIGIDO: loja.busca -->
+    <form action="{{ url_for('loja.busca') }}" method="get" class="search-bar" style="display: flex; gap: 10px; max-width: 600px; margin: 0 auto 40px auto;">
+        <input type="text" name="termo" placeholder="O que você procura?" style="flex-grow: 1; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+
+    <h2 style="border-left: 5px solid var(--secondary); padding-left: 15px; margin-bottom: 20px;">Destaques</h2>
+    
+    <div class="product-grid">
+        {% for pid, produto in produtos %}
+            <div class="card">
+                <img src="{{ produto.imagem_url }}" alt="{{ produto.nome }}">
+                <div class="card-body">
+                    <h3>{{ produto.nome }}</h3>
+                    <p class="price">R$ {{ "%.2f"|format(produto.preco) }}</p>
+                    
+                    <div class="card-actions">
+                        <!-- CORRIGIDO: loja.detalhe_produto (Era aqui o erro atual) -->
+                        <a href="{{ url_for('loja.detalhe_produto', pid=pid) }}" class="btn btn-outline">Ver Detalhes</a>
+                        
+                        <!-- CORRIGIDO: checkout.adicionar_item -->
+                        <form action="{{ url_for('checkout.adicionar_item') }}" method="POST" style="display:inline;">
+                            <input type="hidden" name="produto_id" value="{{ pid }}">
+                            <input type="hidden" name="quantidade" value="1">
+                            <button type="submit" name="acao_compra" value="adicionar_carrinho" class="btn btn-primary">
+                                + Carrinho
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

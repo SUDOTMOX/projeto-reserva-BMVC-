@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Histórico de Pedidos{% endblock %}
+
+{% block content %}
+    <h1>Meus Pedidos</h1>
+    <a href="{{ url_for('auth.perfil') }}">← Voltar ao Perfil</a>
+
+    {% if not pedidos %}
+        <div class="empty-state">
+            <p>Você ainda não fez nenhum pedido.</p>
+            <a href="{{ url_for('loja.index') }}" class="btn btn-primary">Ir às Compras</a>
+        </div>
+    {% else %}
+        <div class="orders-list">
+            {% for pid, carrinho in pedidos %}
+                <div class="order-card">
+                    <div class="order-header">
+                        <h3>Pedido #{{ pid }}</h3>
+                        <span class="status-badge status-{{ carrinho.status|lower }}">{{ carrinho.status }}</span>
+                    </div>
+                    
+                    <ul class="order-items">
+                        {% for item in carrinho.itens %}
+                            <li>
+                                {{ item.quantidade }}x <strong>{{ item.produto.nome }}</strong>
+                                - R$ {{ "%.2f"|format(item.subtotal()) }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    
+                    <div class="order-footer">
+                        <strong>Total: R$ {{ "%.2f"|format(carrinho.calcular_total()) }}</strong>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

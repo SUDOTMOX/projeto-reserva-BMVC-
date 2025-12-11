@@ -1,0 +1,14 @@
+services:
+  loja-web:
+    build: .
+    container_name: technova-store
+    ports:
+      - "5000:5000"
+    volumes:
+      # Mapeia a pasta atual (.) para a pasta /app dentro do container
+      # Isso permite que alterações no código (VS Code) reflitam na hora
+      - .:/app
+    environment:
+      - FLASK_DEBUG=1
+      - FLASK_APP=main.py
+    restart: unless-stopped
