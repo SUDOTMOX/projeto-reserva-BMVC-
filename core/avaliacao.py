@@ -1,7 +1,5 @@
-# Arquivo: core/avaliacao.py
 
 class Avaliacao:
-    """Classe de dados simples para ser Associada ao Produto."""
     def __init__(self, cliente_id, nota, comentario):
         self.cliente_id = cliente_id
         self.nota = nota

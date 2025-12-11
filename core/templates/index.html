@@ -1,36 +1,42 @@
 {% extends "base.html" %}
 
-{% block title %}Dashboard Principal | TechNova Store{% endblock %}
+{% block title %}TechNova Store | Ofertas do Dia{% endblock %}
 
 {% block content %}
 
-    <div class="bg-light p-5 rounded-3 mb-5 shadow-sm text-center">
-        <div class="container-fluid py-3">
-            <h1 class="display-5 fw-bold" style="color: var(--cor-primaria);">Bem-vindo à TechNova</h1>
-            <p class="col-md-8 fs-4 text-muted mx-auto">
-                Projeto BMVC completo com Flask e POO.
-            </p>
-            <a href="{{ url_for('busca') }}" class="btn btn-success btn-lg fw-bold mt-3">
-                <i class="fas fa-search me-2"></i>Ver produtos
+    <div class="bg-dark text-white p-4 rounded-3 mb-5 shadow-sm" 
+         style="background: linear-gradient(45deg, #1a1a1a, #2c3e50);">
+        <div class="container-fluid py-2 d-flex align-items-center justify-content-between flex-wrap">
+            <div>
+                <h1 class="display-6 fw-bold">Bem-vindo à TechNova</h1>
+                <p class="lead mb-0 fs-6">As melhores ofertas em tecnologia e livros você encontra aqui.</p>
+            </div>
+            <a href="{{ url_for('loja.busca') }}" class="btn btn-light fw-bold mt-2 mt-md-0">
+                Ver Todas as Ofertas
             </a>
         </div>
     </div>
 
-    <h2 style="color: var(--cor-primaria);">Destaques</h2>
+    <div class="d-flex align-items-center mb-4">
+        <h3 class="fw-bold mb-0 text-dark">Destaques para você</h3>
+        <a href="{{ url_for('loja.busca') }}" class="ms-auto text-decoration-none text-primary fw-bold" style="font-size: 0.9rem;">
+            Ver mais <i class="fas fa-chevron-right ms-1"></i>
+        </a>
+    </div>
     
-    <div class="product-grid">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 mb-5">
         {% for pid, produto in produtos %}
-            <a href="{{ url_for('detalhe_produto', pid=pid) }}" style="text-decoration: none; color: inherit;">
+            <div class="col">
                 {% include 'product_card.html' %} 
-            </a>
+            </div>
         {% endfor %}
     </div>
 
     {% if session.get('is_admin') %} 
-        <hr class="my-5">
-        <div class="alert alert-warning">
-            <h4><i class="fas fa-user-shield"></i> Área Admin</h4>
-            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-danger">Ir para Dashboard</a>
+        <div class="fixed-bottom m-4 text-end">
+            <a href="{{ url_for('admin.dashboard') }}" class="btn btn-danger shadow-lg rounded-pill px-4">
+                <i class="fas fa-user-shield me-2"></i>Painel Admin
+            </a>
         </div>
     {% endif %}
 

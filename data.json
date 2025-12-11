@@ -1,313 +1,159 @@
 {
     "clientes": {
-        "1": {
-            "nome": "João Silva",
-            "cpf": "000.111.222-33",
-            "endereco": "Rua Principal, 100",
-            "senha": "123",
-            "is_admin": false
-        },
         "99": {
-            "nome": "Administrador",
+            "nome": "Admin",
             "cpf": "999.999.999-99",
-            "endereco": "Sede TechNova",
+            "endereco": "Sede",
             "senha": "admin",
             "is_admin": true
+        },
+        "100": {
+            "nome": "juan costa",
+            "cpf": "888.888.888-00",
+            "endereco": "Atualize seu endereço",
+            "senha": "1234",
+            "is_admin": false
         }
     },
     "produtos": {
-        "101": {
-            "nome": "WD 2TB Elements Portable External Hard Drive - USB 3.0 ",
-            "preco": 352.0,
-            "categoria": "Informática",
-            "peso": 1.7,
-            "imagem_url": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_t.png",
-            "avaliacoes": []
-        },
-        "102": {
-            "nome": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
-            "preco": 599.5,
-            "categoria": "Informática",
-            "peso": 1.5,
-            "imagem_url": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_t.png",
-            "avaliacoes": []
-        },
         "103": {
-            "nome": "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Bo",
-            "preco": 599.5,
-            "categoria": "Informática",
-            "peso": 2.3,
-            "imagem_url": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_t.png",
+            "nome": "WD 2TB Elements Portable External Hard Drive - USB",
+            "preco": 352.0,
+            "categoria": "Eletrônico",
+            "peso": 1.0,
+            "imagem_url": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_t.png",
             "avaliacoes": []
         },
         "104": {
-            "nome": "WD 4TB Gaming Drive Works with Playstation 4 Portable Extern",
-            "preco": 627.0,
-            "categoria": "Informática",
-            "peso": 2.2,
-            "imagem_url": "https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_t.png",
+            "nome": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/",
+            "preco": 599.5,
+            "categoria": "Eletrônico",
+            "peso": 1.7,
+            "imagem_url": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_t.png",
             "avaliacoes": []
         },
         "105": {
-            "nome": "Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-T",
-            "preco": 3294.5,
-            "categoria": "Informática",
-            "peso": 0.5,
-            "imagem_url": "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_t.png",
+            "nome": "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Perf",
+            "preco": 599.5,
+            "categoria": "Eletrônico",
+            "peso": 0.9,
+            "imagem_url": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_t.png",
             "avaliacoes": []
         },
         "106": {
-            "nome": "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90D",
-            "preco": 5499.945,
+            "nome": "WD 4TB Gaming Drive Works with Playstation 4 Porta",
+            "preco": 627.0,
             "categoria": "Eletrônico",
-            "peso": 0.2,
-            "imagem_url": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_t.png",
+            "peso": 1.5,
+            "imagem_url": "https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_t.png",
             "avaliacoes": []
         },
         "107": {
-            "nome": "WD 2TB Elements Portable External Hard Drive - USB 3.0  (Edição Especial)",
-            "preco": 402.0,
-            "categoria": "Informática",
-            "peso": 0.4,
-            "imagem_url": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_t.png",
+            "nome": "Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) I",
+            "preco": 3294.5,
+            "categoria": "Eletrônico",
+            "peso": 0.6,
+            "imagem_url": "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_t.png",
             "avaliacoes": []
         },
         "108": {
-            "nome": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s (Edição Especial)",
-            "preco": 649.5,
-            "categoria": "Informática",
+            "nome": "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor ",
+            "preco": 5499.945,
+            "categoria": "Eletrônico",
             "peso": 1.7,
-            "imagem_url": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_t.png",
+            "imagem_url": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_t.png",
             "avaliacoes": []
         },
         "109": {
-            "nome": "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Bo (Edição Especial)",
-            "preco": 649.5,
-            "categoria": "Informática",
-            "peso": 1.9,
-            "imagem_url": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_t.png",
+            "nome": "Código Limpo: Habilidades Práticas",
+            "preco": 89.9,
+            "categoria": "Livro",
+            "peso": 0.5,
+            "imagem_url": "https://m.media-amazon.com/images/I/41oKdU9XpCL._SY445_SX342_.jpg",
             "avaliacoes": []
         },
         "110": {
-            "nome": "WD 4TB Gaming Drive Works with Playstation 4 Portable Extern (Edição Especial)",
-            "preco": 677.0,
-            "categoria": "Informática",
-            "peso": 2.0,
-            "imagem_url": "https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_t.png",
+            "nome": "Arquitetura Limpa: O Guia do Artesão",
+            "preco": 79.9,
+            "categoria": "Livro",
+            "peso": 0.6,
+            "imagem_url": "https://m.media-amazon.com/images/I/41-sN-mzwKL._SY445_SX342_.jpg",
             "avaliacoes": []
         },
         "111": {
-            "nome": "Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-T (Edição Especial)",
-            "preco": 3344.5,
-            "categoria": "Eletrônico",
-            "peso": 1.6,
-            "imagem_url": "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_t.png",
+            "nome": "O Senhor dos Anéis: A Sociedade do Anel",
+            "preco": 59.9,
+            "categoria": "Livro",
+            "peso": 1.2,
+            "imagem_url": "https://placehold.co/300x450/333/FFF?text=Senhor+dos+Aneis",
             "avaliacoes": []
         },
         "112": {
-            "nome": "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90D (Edição Especial)",
-            "preco": 5549.945,
-            "categoria": "Eletrônico",
-            "peso": 1.7,
-            "imagem_url": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_t.png",
+            "nome": "Harry Potter e a Pedra Filosofal",
+            "preco": 45.5,
+            "categoria": "Livro",
+            "peso": 0.4,
+            "imagem_url": "https://placehold.co/300x450/5e3b5e/FFF?text=Harry+Potter",
             "avaliacoes": []
         },
         "113": {
-            "nome": "WD 2TB Elements Portable External Hard Drive - USB 3.0 ",
-            "preco": 352.0,
-            "categoria": "Informática",
-            "peso": 2.6,
-            "imagem_url": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_t.png",
+            "nome": "Cadeira de Escritório Ergonômica",
+            "preco": 650.0,
+            "categoria": "Móveis",
+            "peso": 12.0,
+            "imagem_url": "https://placehold.co/400x400/2c3e50/FFF?text=Cadeira+Ergo",
             "avaliacoes": []
         },
         "114": {
-            "nome": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
-            "preco": 599.5,
-            "categoria": "Informática",
-            "peso": 1.9,
-            "imagem_url": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_t.png",
+            "nome": "Mesa Gamer Preta 1.20m",
+            "preco": 320.0,
+            "categoria": "Móveis",
+            "peso": 15.5,
+            "imagem_url": "https://placehold.co/500x300/000/FFF?text=Mesa+Gamer",
             "avaliacoes": []
         },
         "115": {
-            "nome": "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Bo",
-            "preco": 599.5,
-            "categoria": "Informática",
-            "peso": 0.8,
-            "imagem_url": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_t.png",
-            "avaliacoes": []
-        },
-        "116": {
-            "nome": "WD 4TB Gaming Drive Works with Playstation 4 Portable Extern",
-            "preco": 627.0,
-            "categoria": "Informática",
-            "peso": 0.3,
-            "imagem_url": "https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_t.png",
-            "avaliacoes": []
-        },
-        "117": {
-            "nome": "Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-T",
-            "preco": 3294.5,
-            "categoria": "Acessório",
-            "peso": 2.4,
-            "imagem_url": "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_t.png",
-            "avaliacoes": []
-        },
-        "118": {
-            "nome": "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90D",
-            "preco": 5499.945,
-            "categoria": "Eletrônico",
-            "peso": 2.9,
-            "imagem_url": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_t.png",
-            "avaliacoes": []
-        },
-        "119": {
-            "nome": "WD 2TB Elements Portable External Hard Drive - USB 3.0  (Edição Especial)",
-            "preco": 402.0,
-            "categoria": "Informática",
-            "peso": 0.8,
-            "imagem_url": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_t.png",
-            "avaliacoes": []
-        },
-        "120": {
-            "nome": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s (Edição Especial)",
-            "preco": 649.5,
-            "categoria": "Informática",
-            "peso": 1.3,
-            "imagem_url": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_t.png",
-            "avaliacoes": []
-        },
-        "121": {
-            "nome": "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Bo (Edição Especial)",
-            "preco": 649.5,
-            "categoria": "Informática",
-            "peso": 1.3,
-            "imagem_url": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_t.png",
-            "avaliacoes": []
-        },
-        "122": {
-            "nome": "WD 4TB Gaming Drive Works with Playstation 4 Portable Extern (Edição Especial)",
-            "preco": 677.0,
-            "categoria": "Informática",
-            "peso": 0.3,
-            "imagem_url": "https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_t.png",
-            "avaliacoes": []
-        },
-        "123": {
-            "nome": "Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-T (Edição Especial)",
-            "preco": 3344.5,
-            "categoria": "Acessório",
-            "peso": 0.2,
-            "imagem_url": "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_t.png",
-            "avaliacoes": []
-        },
-        "124": {
-            "nome": "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90D (Edição Especial)",
-            "preco": 5549.945,
-            "categoria": "Eletrônico",
-            "peso": 1.9,
-            "imagem_url": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_t.png",
-            "avaliacoes": []
-        },
-        "125": {
-            "nome": "WD 2TB Elements Portable External Hard Drive - USB 3.0 ",
-            "preco": 352.0,
-            "categoria": "Informática",
-            "peso": 2.3,
-            "imagem_url": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_t.png",
-            "avaliacoes": []
-        },
-        "126": {
-            "nome": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
-            "preco": 599.5,
-            "categoria": "Informática",
-            "peso": 0.8,
-            "imagem_url": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_t.png",
-            "avaliacoes": []
-        },
-        "127": {
-            "nome": "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Bo",
-            "preco": 599.5,
-            "categoria": "Informática",
-            "peso": 2.9,
-            "imagem_url": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_t.png",
-            "avaliacoes": []
-        },
-        "128": {
-            "nome": "WD 4TB Gaming Drive Works with Playstation 4 Portable Extern",
-            "preco": 627.0,
-            "categoria": "Informática",
-            "peso": 0.6,
-            "imagem_url": "https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_t.png",
-            "avaliacoes": []
-        },
-        "129": {
-            "nome": "Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-T",
-            "preco": 3294.5,
-            "categoria": "Gamer",
-            "peso": 0.2,
-            "imagem_url": "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_t.png",
-            "avaliacoes": []
-        },
-        "130": {
-            "nome": "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90D",
-            "preco": 5499.945,
-            "categoria": "Eletrônico",
-            "peso": 0.6,
-            "imagem_url": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_t.png",
-            "avaliacoes": []
-        },
-        "131": {
-            "nome": "WD 2TB Elements Portable External Hard Drive - USB 3.0  (Edição Especial)",
-            "preco": 402.0,
-            "categoria": "Informática",
-            "peso": 1.5,
-            "imagem_url": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_t.png",
-            "avaliacoes": []
-        },
-        "132": {
-            "nome": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s (Edição Especial)",
-            "preco": 649.5,
-            "categoria": "Informática",
-            "peso": 2.2,
-            "imagem_url": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_t.png",
-            "avaliacoes": []
-        },
-        "133": {
-            "nome": "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Bo (Edição Especial)",
-            "preco": 649.5,
-            "categoria": "Informática",
-            "peso": 3.0,
-            "imagem_url": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_t.png",
-            "avaliacoes": []
-        },
-        "134": {
-            "nome": "WD 4TB Gaming Drive Works with Playstation 4 Portable Extern (Edição Especial)",
-            "preco": 677.0,
-            "categoria": "Informática",
-            "peso": 2.5,
-            "imagem_url": "https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_t.png",
-            "avaliacoes": []
-        },
-        "135": {
-            "nome": "Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-T (Edição Especial)",
-            "preco": 3344.5,
-            "categoria": "Acessório",
-            "peso": 0.3,
-            "imagem_url": "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_t.png",
-            "avaliacoes": []
-        },
-        "136": {
-            "nome": "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90D (Edição Especial)",
-            "preco": 5549.945,
-            "categoria": "Eletrônico",
-            "peso": 2.6,
-            "imagem_url": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_t.png",
+            "nome": "Estante de Livros Industrial",
+            "preco": 210.0,
+            "categoria": "Móveis",
+            "peso": 8.0,
+            "imagem_url": "https://placehold.co/300x600/8e44ad/FFF?text=Estante",
             "avaliacoes": []
         }
     },
-    "carrinhos": {},
+    "carrinhos": {
+        "1": {
+            "cliente_id": "888.888.888-00",
+            "status": "PROCESSADO",
+            "data_criacao": "11/12/2025 11:38",
+            "itens": []
+        },
+        "2": {
+            "cliente_id": "888.888.888-00",
+            "status": "ABERTO",
+            "data_criacao": "11/12/2025 14:40",
+            "itens": []
+        },
+        "3": {
+            "cliente_id": "999.999.999-99",
+            "status": "PROCESSADO",
+            "data_criacao": "11/12/2025 14:43",
+            "itens": []
+        },
+        "4": {
+            "cliente_id": "999.999.999-99",
+            "status": "PROCESSADO",
+            "data_criacao": "11/12/2025 12:02",
+            "itens": [
+                {
+                    "produto_id": "103",
+                    "quantidade": 1
+                }
+            ]
+        }
+    },
     "next_ids": {
-        "cliente": 100,
-        "carrinho": 1
+        "cliente": 101,
+        "carrinho": 5
     }
 }

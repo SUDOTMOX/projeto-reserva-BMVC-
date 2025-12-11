@@ -13,36 +13,42 @@
     <div class="auth-grid">
         <div class="auth-box login-box">
             <h3>Já sou cliente</h3>
-            <p>Entre com seu CPF e senha.</p>
-            
             <form action="{{ url_for('auth.login_cadastro') }}" method="POST">
                 <input type="hidden" name="acao" value="login">
-                
                 <div class="form-group">
                     <label>CPF:</label>
-                    <input type="text" name="cpf_login" placeholder="000.000.000-00" required>
+                    <input type="text" name="cpf_login" required>
                 </div>
-                
                 <div class="form-group">
                     <label>Senha:</label>
-                    <input type="password" name="senha_login" placeholder="Sua senha" required>
+                    <input type="password" name="senha_login" required>
                 </div>
-
                 <button type="submit" class="btn btn-primary">Entrar</button>
             </form>
-            
             <div class="admin-hint">
-                <small><strong>Dica para Professor:</strong> Use CPF <code>999.999.999-99</code> e senha <code>admin</code> para acesso ADM.</small>
+                <small><strong>Admin:</strong> 999.999.999-99 / admin</small>
             </div>
         </div>
 
         <div class="auth-box register-box">
-            <h3>Primeira vez aqui?</h3>
-            <p>Crie sua conta para acompanhar pedidos e agilizar compras.</p>
-            
+            <h3>Criar Conta Nova</h3>
             <form action="{{ url_for('auth.login_cadastro') }}" method="POST">
                 <input type="hidden" name="acao" value="cadastro">
-                <button type="submit" class="btn btn-outline">Criar Conta Nova</button>
+                
+                <div class="form-group">
+                    <label>Nome Completo:</label>
+                    <input type="text" name="nome_cadastro" required>
+                </div>
+                <div class="form-group">
+                    <label>CPF:</label>
+                    <input type="text" name="cpf_cadastro" required>
+                </div>
+                <div class="form-group">
+                    <label>Senha:</label>
+                    <input type="password" name="senha_cadastro" required>
+                </div>
+                
+                <button type="submit" class="btn btn-outline">Cadastrar</button>
             </form>
         </div>
     </div>

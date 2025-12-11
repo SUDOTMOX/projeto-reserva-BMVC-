@@ -1,13 +1,9 @@
 import random
 
 class QRCodeService:
-    """
-    Simula um serviço externo de geração de QR Codes.
-    No mundo real, isso conectaria a uma API de banco.
-    """
+    
     @staticmethod
     def gerar_qrcode(dados):
-        # Simula a criação de um hash único
         hash_mock = f"{hash(dados)}{random.randint(1000, 9999)}"
         
         return {

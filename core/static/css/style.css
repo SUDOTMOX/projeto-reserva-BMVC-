@@ -1,7 +1,6 @@
-/* --- RESET E GERAL --- */
 :root {
     --primary: #2c3e50;
-    --secondary: #e67e22; /* Laranja TechNova */
+    --secondary: #e67e22; 
     --accent: #3498db;
     --success: #27ae60;
     --danger: #c0392b;
@@ -22,7 +21,6 @@ body {
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; padding: 0; }
 
-/* --- CABEÇALHO --- */
 .main-header {
     background-color: var(--primary);
     color: white;

@@ -1,34 +1,38 @@
+{% extends "base.html" %}
 
-
-{% block title %}Busca e Filtros Avançados{% endblock %}
+{% block title %}Busca de Produtos{% endblock %}
 
 {% block content %}
-
-    <div class="mb-4">
-        <h2><i class="fas fa-search-plus me-2"></i>Busca Avançada de Produtos</h2>
-        <p class="lead text-muted">Utilize os filtros abaixo para refinar sua pesquisa.</p>
+<div class="container mt-4">
+    
+    <div class="row mb-4 align-items-center">
+        <div class="col-md-12">
+            <h2 class="fw-bold" style="color: var(--primary);">
+                <i class="fas fa-search me-2"></i>Catálogo de Produtos
+            </h2>
+            <p class="text-muted">Encontre o que você precisa com nossos filtros avançados.</p>
+        </div>
     </div>
 
-    <div class="row g-4">
-
-        <!-- COLUNA DA ESQUERDA: FILTROS -->
-        <div class="col-lg-3">
-            <div class="card shadow-sm">
-                <div class="card-header bg-white">
-                    <h5 class="mb-0"><i class="fas fa-filter me-2"></i>Filtros</h5>
+    <div class="row">
+        <div class="col-lg-3 col-md-4 mb-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-white border-bottom-0 pt-4">
+                    <h5 class="fw-bold mb-0"><i class="fas fa-filter me-2"></i>Filtros</h5>
                 </div>
                 <div class="card-body">
                     <form method="GET" action="{{ url_for('loja.busca') }}">
                         
                         <div class="mb-3">
-                            <label for="termo" class="form-label fw-bold">Pesquisa por Nome:</label>
-                            <input type="text" class="form-control" id="termo" name="termo" placeholder="Nome do produto..." value="{{ termo }}">
+                            <label for="termo" class="form-label small fw-bold text-uppercase text-muted">Nome do Produto</label>
+                            <input type="text" class="form-control" id="termo" name="termo" 
+                                   placeholder="Ex: Teclado..." value="{{ termo }}">
                         </div>
 
                         <div class="mb-3">
-                            <label for="categoria" class="form-label fw-bold">Tipo de Produto:</label>
+                            <label for="categoria" class="form-label small fw-bold text-uppercase text-muted">Categoria</label>
                             <select name="categoria" id="categoria" class="form-select">
-                                <option value="">Todas as Categorias</option>
+                                <option value="">Todas</option>
                                 {% for cat in categorias %}
                                     <option value="{{ cat }}" {% if cat == categoria_selecionada %}selected{% endif %}>{{ cat }}</option>
                                 {% endfor %}
@@ -36,55 +40,74 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="preco_max" class="form-label fw-bold">Preço Máximo:</label>
-                            <input type="number" class="form-control" id="preco_max" name="preco_max" placeholder="Ex: 5000">
+                            <label for="preco_max" class="form-label small fw-bold text-uppercase text-muted">Preço Máximo (R$)</label>
+                            <input type="number" class="form-control" id="preco_max" name="preco_max" 
+                                   placeholder="Ex: 2000" value="{{ preco_max_selecionado }}">
                         </div>
 
-                        <div class="mb-3">
-                            <label for="avaliacao_min" class="form-label fw-bold">Avaliação Mínima:</label>
-                            <select name="avaliacao_min" id="avaliacao_min" class="form-select">
-                                <option value="1">1 estrela ou mais</option>
-                                <option value="3">3 estrelas ou mais</option>
-                                <option value="4" selected>4 estrelas ou mais</option>
-                            </select>
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-success fw-bold">
+                                Aplicar Filtros
+                            </button>
+                            <a href="{{ url_for('loja.busca') }}" class="btn btn-outline-secondary btn-sm">
+                                Limpar
+                            </a>
                         </div>
-
-                        <button type="submit" class="btn btn-success w-100 fw-bold mt-2">
-                            <i class="fas fa-check me-2"></i>Aplicar Filtros
-                        </button>
-                        
-                        <a href="{{ url_for('loja.busca') }}" class="btn btn-outline-secondary w-100 mt-2">
-                            Limpar Filtros
-                        </a>
 
                     </form>
                 </div>
             </div>
         </div>
 
-        <!-- COLUNA DA DIREITA: RESULTADOS -->
-        <div class="col-lg-9">
-            <h3 class="mb-3">Resultados ({{ produtos | length }} encontrados)</h3>
-            <hr>
-
-            <div class="product-grid">
-                {% if not produtos %}
-                    <div class="col-12">
-                        <div class="alert alert-warning" role="alert">
-                            <i class="fas fa-exclamation-triangle me-2"></i>Nenhum produto encontrado com estes filtros.
+        <div class="col-lg-9 col-md-8">
+            
+            {% if not produtos %}
+                <div class="alert alert-warning text-center p-5 rounded-3 shadow-sm">
+                    <h4><i class="fas fa-box-open mb-3" style="font-size: 2rem;"></i></h4>
+                    <h5>Nenhum produto encontrado.</h5>
+                    <p>Tente ajustar os filtros ou buscar por outro termo.</p>
+                </div>
+            {% else %}
+                
+                <p class="text-muted mb-3">Exibindo <strong>{{ produtos|length }}</strong> produtos encontrados.</p>
+                
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    {% for pid, produto in produtos %}
+                    <div class="col">
+                        <div class="card h-100 shadow-sm border-0 product-card-hover">
+                            <div style="height: 200px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #f8f9fa; position: relative;">
+                                <img src="{{ produto.imagem_url if produto.imagem_url else 'https://via.placeholder.com/300x200?text=Sem+Imagem' }}" 
+                                     class="card-img-top p-3" 
+                                     alt="{{ produto.nome }}"
+                                     style="max-height: 100%; width: auto; object-fit: contain;">
+                            </div>
+                            
+                            <div class="card-body d-flex flex-column">
+                                <span class="badge bg-light text-dark mb-2 align-self-start border">{{ produto.categoria }}</span>
+                                <h5 class="card-title text-truncate" title="{{ produto.nome }}">{{ produto.nome }}</h5>
+                                <h4 class="text-primary fw-bold my-2">R$ {{ "%.2f"|format(produto.preco) }}</h4>
+                                
+                                <div class="mt-auto d-grid gap-2">
+                                    <a href="{{ url_for('loja.detalhe_produto', pid=pid) }}" class="btn btn-outline-primary btn-sm">
+                                        Ver Detalhes
+                                    </a>
+                                    
+                                    <form action="{{ url_for('checkout.adicionar_item') }}" method="POST" class="d-grid">
+                                        <input type="hidden" name="produto_id" value="{{ pid }}">
+                                        <input type="hidden" name="quantidade" value="1">
+                                        <button type="submit" name="acao_compra" value="adicionar_carrinho" class="btn btn-success btn-sm">
+                                            <i class="fas fa-cart-plus me-1"></i> + Carrinho
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                {% else %}
-                    {% for pid, produto in produtos %}
-                        <!-- 
-                           Atenção: O card original era envolto em um link <a>. 
-                           Se o seu 'product_card.html' tiver botões dentro, remova esse <a> externo
-                           para não quebrar o HTML. Caso contrário, pode manter.
-                        -->
-                        {% include 'product_card.html' %} 
                     {% endfor %}
-                {% endif %}
-            </div>
+                </div>
+
+            {% endif %}
         </div>
     </div>
+</div>
 {% endblock %}

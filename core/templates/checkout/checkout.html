@@ -21,7 +21,7 @@
                     <tr>
                         <td>{{ item.produto.nome }}</td>
                         <td>{{ item.quantidade }}</td>
-                        <td>R$ {{ "%.2f"|format(item.subtotal()) }}</td>
+                        <td>R$ {{ "%.2f"|format(item.calcular_subtotal()) }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

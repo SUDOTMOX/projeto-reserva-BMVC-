@@ -1,12 +1,9 @@
 from abc import ABC, abstractmethod
 from datetime import datetime, timedelta
-from .utils import QRCodeService  # Importação relativa dentro do pacote services
+from .utils import QRCodeService  
 
 class Pagamento(ABC):
-    """
-    Classe Abstrata (Strategy Base).
-    Define o contrato 'processar' que todas as formas de pagamento devem seguir.
-    """
+   
     def __init__(self, valor):
         self.valor = valor
         self.data_pagamento = datetime.now()
@@ -14,11 +11,11 @@ class Pagamento(ABC):
 
     @abstractmethod
     def processar(self):
-        """Método polimórfico: cada filha implementa de um jeito."""
+       
         pass
     
     def to_json(self):
-        """Serialização comum a todos os pagamentos."""
+       
         return {
             'tipo': self.__class__.__name__,
             'valor': self.valor,
@@ -26,7 +23,6 @@ class Pagamento(ABC):
             'data': self.data_pagamento.strftime("%Y-%m-%d %H:%M:%S")
         }
 
-# --- IMPLEMENTAÇÕES CONCRETAS (Estratégias) ---
 
 class PagamentoPix(Pagamento):
     def __init__(self, valor, chave_pix):
@@ -35,16 +31,13 @@ class PagamentoPix(Pagamento):
         self.dados_qrcode = None
 
     def processar(self):
-        """Lógica específica do PIX: Gera QR Code."""
         print(f"[LOG] Processando PIX de R${self.valor:.2f} para chave {self.chave_pix}...")
         
-        # Uso de dependência (QRCodeService)
         self.dados_qrcode = QRCodeService.gerar_qrcode(f"{self.chave_pix}-{self.valor}")
-        self.status = "APROVADO" # Simulação de aprovação imediata
+        self.status = "APROVADO"
         return True
     
     def to_json(self):
-        """Sobrescrita para incluir dados do QR Code no JSON."""
         data = super().to_json()
         data['chave_pix'] = self.chave_pix
         data['qr_info'] = self.dados_qrcode
@@ -54,14 +47,12 @@ class PagamentoPix(Pagamento):
 class PagamentoCartao(Pagamento):
     def __init__(self, valor, num_cartao, parcelas=1):
         super().__init__(valor)
-        self.num_cartao = num_cartao # Em produção, nunca salve o cartão real!
+        self.num_cartao = num_cartao 
         self.parcelas = parcelas
 
     def processar(self):
-        """Lógica específica do Cartão: Valida limite e parcelas."""
         print(f"[LOG] Processando Cartão {self.num_cartao} em {self.parcelas}x...")
         
-        # Simula comunicação com gateway (Cielo, Stripe, etc)
         if self.parcelas > 12:
             self.status = "RECUSADO"
             return False
@@ -72,13 +63,12 @@ class PagamentoCartao(Pagamento):
     def to_json(self):
         data = super().to_json()
         data['parcelas'] = self.parcelas
-        data['cartao_final'] = self.num_cartao[-4:] # Salva só o final por segurança
+        data['cartao_final'] = self.num_cartao[-4:] 
         return data
 
 
 class PagamentoBoleto(Pagamento):
     def processar(self):
-        """Lógica específica do Boleto: Gera código de barras e data de vencimento."""
         print(f"[LOG] Gerando Boleto de R${self.valor:.2f}...")
         
         self.vencimento = self.data_pagamento + timedelta(days=3)

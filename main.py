@@ -4,6 +4,8 @@ import os
 import sys
 
 
+from core.extensions import socketio
+
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -22,6 +24,8 @@ app.secret_key = 'chave_muito_secreta_projeto_unb'
 app.permanent_session_lifetime = timedelta(minutes=60) 
 
 
+socketio.init_app(app, cors_allowed_origins="*")
+
 app.register_blueprint(loja_bp)      
 app.register_blueprint(auth_bp)     
 app.register_blueprint(checkout_bp) 
@@ -35,4 +39,4 @@ if __name__ == "__main__":
     print(f" Acesse em: http://127.0.0.1:5000")
     print("="*50 + "\n")
     
-app.run(host='0.0.0.0', debug=True)
+    socketio.run(app, host='0.0.0.0', debug=True, allow_unsafe_werkzeug=True)
